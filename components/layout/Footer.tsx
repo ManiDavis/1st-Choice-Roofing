@@ -60,13 +60,15 @@ export function Footer({
           {/* Brand column */}
           <div className="space-y-4">
             <Link href="/" className="inline-block">
-              <Image
-                src={logoSrc}
-                alt={businessName}
-                width={140}
-                height={56}
-                className="h-14 w-auto object-contain"
-              />
+              <div className="relative w-20 h-20 rounded-full overflow-hidden">
+                <Image
+                  src={logoSrc}
+                  alt={businessName}
+                  fill
+                  className="object-cover scale-[1.6]"
+                  sizes="80px"
+                />
+              </div>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               {footerText || `Licensed & Insured Roofing Contractor Serving Webster, Worcester & Surrounding Massachusetts Towns.`}

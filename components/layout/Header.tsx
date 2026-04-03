@@ -63,15 +63,18 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0" aria-label={`${businessName} home`}>
-            <Image
-              src={logoSrc}
-              alt={businessName}
-              width={120}
-              height={48}
-              className="h-12 w-auto object-contain"
-              priority
-            />
+          <Link href="/" className="flex-shrink-0" aria-label={`${businessName} home`}>
+            {/* Circular crop: the logo JPG has dark padding; scale-[1.6] zooms to the circular mark */}
+            <div className="relative w-14 h-14 rounded-full overflow-hidden">
+              <Image
+                src={logoSrc}
+                alt={businessName}
+                fill
+                className="object-cover scale-[1.6]"
+                sizes="56px"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Nav */}

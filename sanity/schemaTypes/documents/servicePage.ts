@@ -1,11 +1,11 @@
 import { defineField, defineType, defineArrayMember } from 'sanity'
-import { ToolIcon } from '@sanity/icons'
+import { WrenchIcon } from '@sanity/icons'
 
 export const servicePage = defineType({
   name: 'servicePage',
   title: 'Service',
   type: 'document',
-  icon: ToolIcon,
+  icon: WrenchIcon,
   fields: [
     defineField({ name: 'title', title: 'Service Name', type: 'string', validation: (rule) => rule.required() }),
     defineField({
