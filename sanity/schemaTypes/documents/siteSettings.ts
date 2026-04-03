@@ -20,7 +20,7 @@ export const siteSettings = defineType({
       name: 'tagline',
       title: 'Tagline',
       type: 'string',
-      initialValue: 'Webster & Worcester's Most Trusted Roofing Contractor',
+      initialValue: "Webster & Worcester's Most Trusted Roofing Contractor",
     }),
     defineField({
       name: 'phone',

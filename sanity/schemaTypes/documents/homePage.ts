@@ -143,7 +143,7 @@ export const homePage = defineType({
       fields: [
         defineField({ name: 'enabled', type: 'boolean', title: 'Show', initialValue: true }),
         defineField({ name: 'heading', type: 'string', title: 'Heading', initialValue: 'Serving All of Worcester County, MA' }),
-        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: 'Fast local response — we're in your neighborhood.' }),
+        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: "Fast local response — we're in your neighborhood." }),
       ],
     }),
 
@@ -155,7 +155,7 @@ export const homePage = defineType({
       fields: [
         defineField({ name: 'enabled', type: 'boolean', title: 'Show', initialValue: true }),
         defineField({ name: 'heading', type: 'string', title: 'Heading', initialValue: 'Ready to Get Your Free Estimate?' }),
-        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: 'Call us or fill out the form. We'll get back to you the same day.' }),
+        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: "Call us or fill out the form. We'll get back to you the same day." }),
         defineField({ name: 'primaryCta', type: 'ctaButton', title: 'Primary Button' }),
         defineField({ name: 'secondaryCta', type: 'ctaButton', title: 'Secondary Button' }),
       ],
