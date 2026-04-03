@@ -6,11 +6,21 @@ import { PortableText } from '@portabletext/react'
 import { sanityFetch } from '@/sanity/lib/client'
 import { BLOG_POST_BY_SLUG_QUERY, BLOG_SLUGS_QUERY } from '@/sanity/lib/queries'
 import { CTASection } from '@/components/sections/CTASection'
+import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { breadcrumbSchema, blogPostSchema } from '@/lib/structured-data'
 import { BUSINESS, SITE_URL } from '@/lib/utils'
 
 interface Props {
   params: { slug: string }
+}
+
+const categoryLabels: Record<string, string> = {
+  tips: 'Roofing Tips',
+  residential: 'Residential',
+  commercial: 'Commercial',
+  maintenance: 'Maintenance',
+  'storm-damage': 'Storm Damage',
+  news: 'News',
 }
 
 export async function generateStaticParams() {
@@ -67,7 +77,7 @@ export default async function BlogPostPage({ params }: Props) {
       ))}
 
       {/* Header */}
-      <section className="bg-brand-navy py-16">
+      <section className="bg-brand-navy py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -76,20 +86,44 @@ export default async function BlogPostPage({ params }: Props) {
             <span>›</span>
             <span className="text-white line-clamp-1">{post.title}</span>
           </nav>
-          <h1 className="text-3xl sm:text-4xl font-display font-extrabold text-white mb-4">{post.title}</h1>
+
+          {/* Categories */}
+          {post.categories?.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {post.categories.map((cat: string) => (
+                <span key={cat} className="inline-block bg-brand-gold/20 text-brand-gold text-xs font-semibold px-3 py-1 rounded-full">
+                  {categoryLabels[cat] || cat}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white mb-4 leading-tight">
+            {post.title}
+          </h1>
+
+          {post.excerpt && (
+            <p className="text-lg text-gray-300 mb-6 leading-relaxed max-w-2xl">{post.excerpt}</p>
+          )}
+
           {post.publishedAt && (
-            <p className="text-gray-400 text-sm">
+            <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <svg className="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
               {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-            </p>
+              <span className="text-gray-600">·</span>
+              <span>1st Choice Roofing</span>
+            </div>
           )}
         </div>
       </section>
 
       {/* Content */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {post.featuredImage?.asset?.url && (
-            <div className="relative aspect-video rounded-2xl overflow-hidden mb-10">
+            <div className="relative aspect-video rounded-2xl overflow-hidden mb-10 shadow-lg">
               <Image
                 src={post.featuredImage.asset.url}
                 alt={post.featuredImage.alt || post.title}
@@ -100,11 +134,34 @@ export default async function BlogPostPage({ params }: Props) {
               />
             </div>
           )}
-          <div className="prose prose-lg max-w-none prose-headings:text-brand-navy prose-a:text-brand-red prose-img:rounded-xl">
+
+          <div className="prose prose-lg max-w-none prose-headings:text-brand-navy prose-headings:font-display prose-a:text-brand-gold prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-strong:text-brand-navy">
             <PortableText value={post.body} />
+          </div>
+
+          {/* Back to blog */}
+          <div className="mt-12 pt-8 border-t border-gray-100">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-brand-gold hover:text-brand-gold-dark transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Blog
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* Related services */}
+      {post.relatedServices?.length > 0 && (
+        <ServicesGrid
+          services={post.relatedServices}
+          heading="Related Services"
+          subheading="You might also be interested in these services."
+        />
+      )}
 
       <CTASection phone={BUSINESS.phone} heading="Need a Roofer in Massachusetts?" subheading="Get a free estimate from 1st Choice Roofing today." />
     </>

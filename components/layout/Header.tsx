@@ -49,6 +49,8 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
 
   const links = navLinks && navLinks.length > 0 ? navLinks : defaultLinks
 
+  const logoSrc = logoUrl || '/logo.svg'
+
   return (
     <header
       className={cn(
@@ -62,18 +64,24 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label={`${businessName} home`}>
-            {logoUrl ? (
-              <Image src={logoUrl} alt={businessName} width={160} height={48} className="h-10 w-auto object-contain" />
-            ) : (
-              <div className="flex items-center gap-2">
-                <span className="text-2xl font-display font-extrabold text-white leading-tight">
-                  1<span className="text-brand-red">st</span> Choice
-                </span>
-                <span className="text-sm font-semibold text-brand-gold uppercase tracking-widest leading-tight">
-                  Roofing
-                </span>
-              </div>
-            )}
+            <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-brand-gold/30">
+              <Image
+                src={logoSrc}
+                alt={businessName}
+                fill
+                className="object-cover"
+                sizes="40px"
+                priority
+              />
+            </div>
+            <div className="flex flex-col leading-tight">
+              <span className="text-lg font-display font-extrabold text-white leading-none tracking-tight">
+                1st Choice
+              </span>
+              <span className="text-xs font-semibold text-brand-gold uppercase tracking-widest leading-none">
+                Roofing
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
@@ -98,7 +106,7 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-red transition-colors"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-brand-gold transition-colors"
                         >
                           {child.label}
                         </Link>
@@ -124,7 +132,7 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
             </a>
             <Link
               href="/contact"
-              className="rounded-md bg-brand-red px-4 py-2 text-sm font-bold text-white hover:bg-brand-red-dark transition-colors"
+              className="rounded-md bg-brand-gold px-4 py-2 text-sm font-bold text-brand-navy hover:bg-brand-gold-dark transition-colors"
             >
               Free Estimate
             </Link>
@@ -169,7 +177,7 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-3 py-1.5 text-sm text-gray-400 hover:text-white rounded-md transition-colors"
+                        className="block px-3 py-1.5 text-sm text-gray-400 hover:text-brand-gold rounded-md transition-colors"
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}
@@ -191,7 +199,7 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
               </a>
               <Link
                 href="/contact"
-                className="block w-full text-center rounded-md bg-brand-red px-4 py-3 text-base font-bold text-white hover:bg-brand-red-dark transition-colors"
+                className="block w-full text-center rounded-md bg-brand-gold px-4 py-3 text-base font-bold text-brand-navy hover:bg-brand-gold-dark transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 Get Free Estimate

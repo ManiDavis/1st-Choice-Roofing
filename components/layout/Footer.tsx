@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { formatPhone, BUSINESS } from '@/lib/utils'
 
 interface FooterProps {
@@ -18,6 +19,7 @@ interface FooterProps {
   }
   footerText?: string
   businessName?: string
+  logoUrl?: string
 }
 
 export function Footer({
@@ -27,6 +29,7 @@ export function Footer({
   social,
   footerText,
   businessName = BUSINESS.name,
+  logoUrl,
 }: FooterProps) {
   const serviceLinks = [
     { label: 'Residential Roofing', href: '/services/residential-roofing' },
@@ -46,6 +49,8 @@ export function Footer({
     { label: 'Dudley, MA', href: '/service-areas/dudley' },
   ]
 
+  const logoSrc = logoUrl || '/logo.svg'
+
   return (
     <footer className="bg-brand-navy text-gray-300">
       {/* Main footer */}
@@ -54,14 +59,25 @@ export function Footer({
 
           {/* Brand column */}
           <div className="space-y-4">
-            <div>
-              <span className="text-2xl font-display font-extrabold text-white">
-                1<span className="text-brand-red">st</span> Choice
-              </span>
-              <span className="ml-1 text-sm font-semibold text-brand-gold uppercase tracking-widest">
-                Roofing
-              </span>
-            </div>
+            <Link href="/" className="flex items-center gap-3">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-brand-gold/30">
+                <Image
+                  src={logoSrc}
+                  alt={businessName}
+                  fill
+                  className="object-cover"
+                  sizes="48px"
+                />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-lg font-display font-extrabold text-white leading-none tracking-tight">
+                  1st Choice
+                </span>
+                <span className="text-xs font-semibold text-brand-gold uppercase tracking-widest leading-none">
+                  Roofing
+                </span>
+              </div>
+            </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               {footerText || `Licensed & Insured Roofing Contractor Serving Webster, Worcester & Surrounding Massachusetts Towns.`}
             </p>
@@ -80,12 +96,12 @@ export function Footer({
             {social && (
               <div className="flex gap-3">
                 {social.facebook && (
-                  <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors">
+                  <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-400 hover:text-brand-gold transition-colors">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
                   </a>
                 )}
                 {social.google && (
-                  <a href={social.google} target="_blank" rel="noopener noreferrer" aria-label="Google Reviews" className="text-gray-400 hover:text-white transition-colors">
+                  <a href={social.google} target="_blank" rel="noopener noreferrer" aria-label="Google Reviews" className="text-gray-400 hover:text-brand-gold transition-colors">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 110-12.064c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0012.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
                   </a>
                 )}
@@ -99,8 +115,8 @@ export function Footer({
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
-                    <span className="text-brand-red">›</span>
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-brand-gold transition-colors flex items-center gap-1.5">
+                    <span className="text-brand-gold">›</span>
                     {link.label}
                   </Link>
                 </li>
@@ -114,8 +130,8 @@ export function Footer({
             <ul className="space-y-2">
               {areaLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
-                    <span className="text-brand-red">›</span>
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-brand-gold transition-colors flex items-center gap-1.5">
+                    <span className="text-brand-gold">›</span>
                     {link.label}
                   </Link>
                 </li>
@@ -157,7 +173,7 @@ export function Footer({
               <li className="pt-2">
                 <Link
                   href="/contact"
-                  className="inline-block rounded-md bg-brand-red px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-red-dark transition-colors"
+                  className="inline-block rounded-md bg-brand-gold px-5 py-2.5 text-sm font-bold text-brand-navy hover:bg-brand-gold-dark transition-colors"
                 >
                   Get Free Estimate
                 </Link>

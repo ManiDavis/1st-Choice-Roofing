@@ -42,7 +42,14 @@ export const testimonial = defineType({
     }),
     defineField({ name: 'sourceUrl', title: 'Link to Review', type: 'url' }),
     defineField({ name: 'photo', title: 'Customer Photo', type: 'image', options: { hotspot: true } }),
-    defineField({ name: 'featured', title: 'Featured', type: 'boolean', initialValue: false }),
+    defineField({ name: 'featured', title: 'Featured on Homepage', type: 'boolean', initialValue: false }),
+    defineField({
+      name: 'active',
+      title: 'Active (visible on site)',
+      type: 'boolean',
+      initialValue: true,
+      description: 'Uncheck to hide this review without deleting it.',
+    }),
     defineField({ name: 'date', title: 'Review Date', type: 'date' }),
   ],
   orderings: [
@@ -50,9 +57,13 @@ export const testimonial = defineType({
     { title: 'Rating High to Low', name: 'ratingDesc', by: [{ field: 'rating', direction: 'desc' }] },
   ],
   preview: {
-    select: { title: 'customerName', subtitle: 'quote', media: 'photo' },
-    prepare({ title, subtitle, media }) {
-      return { title, subtitle: subtitle?.substring(0, 80) + '…', media }
+    select: { title: 'customerName', subtitle: 'quote', media: 'photo', active: 'active' },
+    prepare({ title, subtitle, media, active }) {
+      return {
+        title: `${active === false ? '🚫 ' : ''}${title}`,
+        subtitle: subtitle?.substring(0, 80) + '…',
+        media,
+      }
     },
   },
 })

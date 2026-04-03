@@ -88,6 +88,15 @@ export default async function HomePage() {
         />
       )}
 
+      {/* Testimonials — directly below Our Roofing Services */}
+      {(testimonialsSection?.enabled !== false) && testimonialsSection?.featuredTestimonials?.length > 0 && (
+        <Testimonials
+          heading={testimonialsSection.heading}
+          reviewCountLabel={testimonialsSection.reviewCountLabel || '14+'}
+          testimonials={testimonialsSection.featuredTestimonials}
+        />
+      )}
+
       {/* Partner Logos (extra, defaults off) */}
       {partnerLogos?.enabled && <PartnerLogos heading={partnerLogos.heading} logos={partnerLogos.logos} />}
 
@@ -105,14 +114,6 @@ export default async function HomePage() {
 
       {/* Gallery (extra, defaults off) */}
       {gallery?.enabled && <Gallery heading={gallery.heading} subheading={gallery.subheading} images={gallery.images} />}
-
-      {/* Testimonials */}
-      {(testimonialsSection?.enabled !== false) && testimonialsSection?.featuredTestimonials?.length > 0 && (
-        <Testimonials
-          heading={testimonialsSection.heading}
-          testimonials={testimonialsSection.featuredTestimonials}
-        />
-      )}
 
       {/* Financing (extra, defaults off) */}
       {financing?.enabled && (

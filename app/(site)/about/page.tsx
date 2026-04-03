@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/client'
-import { TEAM_MEMBERS_QUERY } from '@/sanity/lib/queries'
+import { TEAM_MEMBERS_QUERY, ALL_TESTIMONIALS_QUERY } from '@/sanity/lib/queries'
 import { CTASection } from '@/components/sections/CTASection'
+import { Testimonials } from '@/components/sections/Testimonials'
 import { breadcrumbSchema } from '@/lib/structured-data'
-import { BUSINESS, SITE_URL, formatPhone } from '@/lib/utils'
-import { StarRating } from '@/components/ui/StarRating'
+import { BUSINESS, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'About 1st Choice Roofing — Webster, MA',
@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 }
 
 export default async function AboutPage() {
-  const team = await sanityFetch<any[]>({ query: TEAM_MEMBERS_QUERY, tags: ['teamMember'] }).catch(() => [])
+  const [team, testimonials] = await Promise.all([
+    sanityFetch<any[]>({ query: TEAM_MEMBERS_QUERY, tags: ['teamMember'] }).catch(() => []),
+    sanityFetch<any[]>({ query: ALL_TESTIMONIALS_QUERY, tags: ['testimonial'] }).catch(() => []),
+  ])
 
   const schema = breadcrumbSchema([
     { name: 'Home', url: SITE_URL },
@@ -52,7 +55,7 @@ export default async function AboutPage() {
                   1st Choice Roofing was built on a simple belief: homeowners and businesses in Massachusetts deserve a roofing contractor they can actually trust. No upsells, no surprises — just honest work, done right.
                 </p>
                 <p>
-                  We're proud to be a local Webster, MA company. We know the area, we know the weather patterns that beat up Massachusetts roofs, and we know what it takes to build roofs that last.
+                  We&apos;re proud to be a local Webster, MA company. We know the area, we know the weather patterns that beat up Massachusetts roofs, and we know what it takes to build roofs that last.
                 </p>
                 <p>
                   With two dedicated residential crews and a separate commercial team, we can take on projects of any size without sacrificing quality or response time.
@@ -68,7 +71,7 @@ export default async function AboutPage() {
               ].map((stat) => (
                 <div key={stat.label} className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100">
                   <div className="text-3xl mb-2">{stat.icon}</div>
-                  <p className="text-3xl font-display font-extrabold text-brand-red">{stat.value}</p>
+                  <p className="text-3xl font-display font-extrabold text-brand-gold">{stat.value}</p>
                   <p className="text-sm text-gray-500 mt-1">{stat.label}</p>
                 </div>
               ))}
@@ -113,13 +116,22 @@ export default async function AboutPage() {
                     )}
                   </div>
                   <h3 className="font-bold text-brand-navy">{member.name}</h3>
-                  {member.role && <p className="text-sm text-brand-red mb-2">{member.role}</p>}
+                  {member.role && <p className="text-sm text-brand-gold mb-2">{member.role}</p>}
                   {member.bio && <p className="text-sm text-gray-600">{member.bio}</p>}
                 </div>
               ))}
             </div>
           </div>
         </section>
+      )}
+
+      {/* Testimonials */}
+      {testimonials.length > 0 && (
+        <Testimonials
+          heading="What Our Customers Say"
+          reviewCountLabel={`${BUSINESS.rating.count}+`}
+          testimonials={testimonials}
+        />
       )}
 
       <CTASection phone={BUSINESS.phone} heading="Ready to Work with Us?" subheading="Get your free, no-obligation estimate today." />

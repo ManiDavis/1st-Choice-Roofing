@@ -84,7 +84,8 @@ export const HOME_PAGE_QUERY = groq`
     testimonialsSection {
       enabled,
       heading,
-      featuredTestimonials[]-> { ${testimonialFragment} },
+      reviewCountLabel,
+      featuredTestimonials[]->{ ${testimonialFragment}, active },
     },
     areasSection,
     ctaBanner {
@@ -124,6 +125,8 @@ export const SERVICE_BY_SLUG_QUERY = groq`
     heroImage { asset->{ url }, alt },
     body,
     benefits,
+    additionalInfo,
+    additionalInfoPosition,
     process,
     faqs[]-> {
       _id,
@@ -170,7 +173,7 @@ export const SERVICE_AREA_SLUGS_QUERY = groq`
 
 // ─── All Testimonials ───────────────────────────────────────────────────────
 export const ALL_TESTIMONIALS_QUERY = groq`
-  *[_type == "testimonial"] | order(date desc) {
+  *[_type == "testimonial" && active != false] | order(date desc) {
     ${testimonialFragment}
   }
 `

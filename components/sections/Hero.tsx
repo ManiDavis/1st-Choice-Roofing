@@ -41,7 +41,7 @@ export function Hero({
           /* Geometric pattern fallback */
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
-              backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(192,57,43,0.3) 40px, rgba(192,57,43,0.3) 80px)`,
+              backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(245,158,11,0.3) 40px, rgba(245,158,11,0.3) 80px)`,
             }} />
           </div>
         )}
@@ -77,7 +77,7 @@ export function Hero({
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
             <Link
               href={primaryCta.href}
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-red px-8 py-4 text-lg font-bold text-white hover:bg-brand-red-dark transition-all shadow-lg shadow-brand-red/30 hover:shadow-brand-red/50"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-gold px-8 py-4 text-lg font-bold text-brand-navy hover:bg-brand-gold-dark transition-all shadow-lg shadow-brand-gold/30 hover:shadow-brand-gold/50"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

@@ -59,6 +59,17 @@ export default async function ServicePage({ params }: Props) {
     }),
   ]
 
+  const additionalInfoAbove = service.additionalInfo && service.additionalInfoPosition === 'above_process'
+  const additionalInfoBelow = service.additionalInfo && service.additionalInfoPosition !== 'above_process'
+
+  const AdditionalInfoBlock = service.additionalInfo ? (
+    <div className="rounded-xl bg-amber-50 border border-amber-100 p-6">
+      <div className="prose prose-sm max-w-none prose-headings:text-brand-navy prose-a:text-brand-gold">
+        <PortableText value={service.additionalInfo} />
+      </div>
+    </div>
+  ) : null
+
   return (
     <>
       {schemas.map((s, i) => (
@@ -88,7 +99,7 @@ export default async function ServicePage({ params }: Props) {
           </nav>
           <div className="max-w-2xl">
             {service.serviceType && service.serviceType !== 'both' && (
-              <span className="inline-block rounded-full bg-brand-red px-3 py-1 text-xs font-semibold text-white mb-4 capitalize">
+              <span className="inline-block rounded-full bg-brand-gold px-3 py-1 text-xs font-semibold text-brand-navy mb-4 capitalize">
                 {service.serviceType}
               </span>
             )}
@@ -97,7 +108,7 @@ export default async function ServicePage({ params }: Props) {
             </h1>
             <p className="text-lg text-gray-300 mb-8">{service.shortDescription}</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-red px-6 py-3 font-bold text-white hover:bg-brand-red-dark transition-colors">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-gold px-6 py-3 font-bold text-brand-navy hover:bg-brand-gold-dark transition-colors">
                 Get Free Estimate
               </Link>
               <a href={`tel:${BUSINESS.phone.replace(/\D/g,'')}`} className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-white px-6 py-3 font-bold text-white hover:bg-white/10 transition-colors">
@@ -112,11 +123,11 @@ export default async function ServicePage({ params }: Props) {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Main content */}
+            {/* Main content — 2/3 width */}
             <div className="lg:col-span-2 space-y-10">
               {/* Rich text body */}
               {service.body && (
-                <div className="prose prose-lg max-w-none prose-headings:text-brand-navy prose-a:text-brand-red">
+                <div className="prose prose-lg max-w-none prose-headings:text-brand-navy prose-a:text-brand-gold">
                   <PortableText value={service.body} />
                 </div>
               )}
@@ -129,7 +140,7 @@ export default async function ServicePage({ params }: Props) {
                     {service.benefits.map((b: { title: string; description: string }, i: number) => (
                       <div key={i} className="rounded-xl bg-gray-50 p-5 border border-gray-100">
                         <div className="flex items-start gap-3">
-                          <svg className="w-5 h-5 text-brand-red mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-5 h-5 text-brand-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <div>
@@ -143,6 +154,9 @@ export default async function ServicePage({ params }: Props) {
                 </div>
               )}
 
+              {/* Additional info ABOVE process */}
+              {additionalInfoAbove && AdditionalInfoBlock}
+
               {/* Process */}
               {service.process?.length > 0 && (
                 <div>
@@ -150,7 +164,7 @@ export default async function ServicePage({ params }: Props) {
                   <div className="space-y-4">
                     {service.process.map((step: { step: number; title: string; description: string }) => (
                       <div key={step.step} className="flex gap-4 items-start">
-                        <div className="w-9 h-9 rounded-full bg-brand-red flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-brand-gold flex items-center justify-center text-brand-navy font-bold text-sm flex-shrink-0">
                           {step.step}
                         </div>
                         <div>
@@ -162,11 +176,14 @@ export default async function ServicePage({ params }: Props) {
                   </div>
                 </div>
               )}
+
+              {/* Additional info BELOW process (default) */}
+              {additionalInfoBelow && AdditionalInfoBlock}
             </div>
 
-            {/* Estimate form sidebar */}
+            {/* Estimate form sidebar — 1/3 width */}
             <div className="lg:sticky lg:top-24 h-fit">
-              <div className="rounded-2xl bg-white border-2 border-brand-red/20 shadow-xl p-7">
+              <div className="rounded-2xl bg-white border-2 border-brand-gold/30 shadow-xl p-7">
                 <h3 className="text-xl font-display font-bold text-brand-navy mb-1">Get a Free Estimate</h3>
                 <p className="text-sm text-gray-500 mb-6">For {service.title}. We reply within 2 hours.</p>
                 <EstimateForm />

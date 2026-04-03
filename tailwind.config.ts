@@ -10,13 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          red: '#C0392B',
-          'red-dark': '#96281B',
-          'red-light': '#E74C3C',
+          // Primary action colour — warm amber matching the logo
+          red: '#D97706',
+          'red-dark': '#B45309',
+          'red-light': '#F59E0B',
+          // Backgrounds
           navy: '#1a1a2e',
           'navy-light': '#16213e',
+          charcoal: '#2a2a2a',
+          // Accent gold
           gold: '#F59E0B',
           'gold-dark': '#D97706',
+          'gold-light': '#FCD34D',
         },
       },
       fontFamily: {
@@ -24,7 +29,7 @@ const config: Config = {
         display: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-pattern': "linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.85))",
+        'hero-pattern': "linear-gradient(rgba(26,26,46,0.85), rgba(26,26,46,0.9))",
       },
     },
   },

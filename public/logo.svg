@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="195" fill="#2a2a2a"/>
+
+  <!-- Concentric arcs (left sweeping rings) -->
+  <g fill="none" stroke="#F59E0B" stroke-linecap="round">
+    <path d="M 60,340 A 200,200 0 0,1 60,60" stroke-width="3.5" opacity="0.9"/>
+    <path d="M 75,330 A 180,180 0 0,1 75,70" stroke-width="3" opacity="0.8"/>
+    <path d="M 90,318 A 160,160 0 0,1 90,82" stroke-width="2.5" opacity="0.7"/>
+    <path d="M 105,306 A 140,140 0 0,1 105,94" stroke-width="2" opacity="0.6"/>
+    <path d="M 118,295 A 122,122 0 0,1 118,105" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- Right side arc -->
+  <path d="M 340,60 A 195,195 0 0,1 340,340" fill="none" stroke="#F59E0B" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+
+  <!-- House / Roof silhouette -->
+  <!-- Main roof (right peak) -->
+  <polyline points="155,185 230,130 305,185" fill="none" stroke="#F59E0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Secondary roof (left smaller peak) -->
+  <polyline points="155,185 195,155 230,185" fill="none" stroke="#F59E0B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Chimney -->
+  <rect x="218" y="132" width="14" height="22" fill="#F59E0B" rx="1"/>
+  <!-- Roof base line -->
+  <line x1="155" y1="185" x2="305" y2="185" stroke="#F59E0B" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- 4 dots (2x2 grid) below chimney area -->
+  <circle cx="219" cy="172" r="5" fill="#F59E0B"/>
+  <circle cx="233" cy="172" r="5" fill="#F59E0B"/>
+  <circle cx="219" cy="183" r="5" fill="#F59E0B"/>
+  <circle cx="233" cy="183" r="5" fill="#F59E0B"/>
+
+  <!-- Company name -->
+  <text x="200" y="222" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="28" fill="white" text-anchor="middle" letter-spacing="1">1ST CHOICE ROOFING</text>
+
+  <!-- Tagline -->
+  <text x="200" y="244" font-family="Arial, sans-serif" font-weight="400" font-size="11.5" fill="white" text-anchor="middle" letter-spacing="2.5">WE ARE YOUR ONLY CHOICE</text>
+</svg>

@@ -60,6 +60,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         social={settings?.social}
         footerText={settings?.footerText}
         businessName={businessName}
+        logoUrl={settings?.logo?.asset?.url}
       />
     </>
   )

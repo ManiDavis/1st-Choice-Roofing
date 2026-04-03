@@ -63,6 +63,28 @@ export const servicePage = defineType({
     }),
 
     defineField({
+      name: 'additionalInfo',
+      title: 'Additional Information',
+      type: 'portableTextContent',
+      description: 'Extra text content shown below Key Benefits (and above/below Our Process if that section exists). Great for detailed service descriptions, local context, warranty info, etc.',
+    }),
+
+    defineField({
+      name: 'additionalInfoPosition',
+      title: 'Additional Info Position (relative to Our Process)',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Below Our Process (default)', value: 'below_process' },
+          { title: 'Above Our Process', value: 'above_process' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'below_process',
+      description: 'Only applies when "Our Process" steps are set. If no process exists the additional info always appears after Key Benefits.',
+    }),
+
+    defineField({
       name: 'faqs',
       title: 'Service-Specific FAQs',
       type: 'array',

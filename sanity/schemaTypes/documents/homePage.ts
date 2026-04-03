@@ -120,6 +120,13 @@ export const homePage = defineType({
         defineField({ name: 'enabled', type: 'boolean', title: 'Show', initialValue: true }),
         defineField({ name: 'heading', type: 'string', title: 'Heading', initialValue: 'What Our Customers Say' }),
         defineField({
+          name: 'reviewCountLabel',
+          title: 'Review Count Label',
+          type: 'string',
+          initialValue: '14+',
+          description: 'The number shown next to "5-Star Reviews" (e.g. "14+" or "20+"). Update this as new reviews arrive.',
+        }),
+        defineField({
           name: 'featuredTestimonials',
           title: 'Featured Testimonials',
           type: 'array',
