@@ -34,12 +34,12 @@ const defaultReasons: Reason[] = [
   {
     icon: '💰',
     title: 'Free, Honest Estimates',
-    description: 'No pressure, no games. We give you a clear, itemised quote so you know exactly what you're paying for.',
+    description: "No pressure, no games. We give you a clear, itemised quote so you know exactly what you're paying for.",
   },
   {
     icon: '✅',
     title: 'Quality Guarantee',
-    description: 'We stand behind every roof we install. If there's an issue, we come back and fix it.',
+    description: "We stand behind every roof we install. If there's an issue, we come back and fix it.",
   },
 ]
 
