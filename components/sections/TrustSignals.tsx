@@ -14,7 +14,7 @@ const defaultStats = [
 export function TrustSignals({
   stats = defaultStats,
   heading = 'Proudly Serving Webster, MA & the Greater Worcester Area',
-  body = 'We're a locally-owned, fully licensed and insured roofing contractor with crews dedicated to residential and commercial work. When you call 1st Choice Roofing, you get an experienced local team that knows Massachusetts weather, local building codes, and your neighborhood.',
+  body = "We're a locally-owned, fully licensed and insured roofing contractor with crews dedicated to residential and commercial work. When you call 1st Choice Roofing, you get an experienced local team that knows Massachusetts weather, local building codes, and your neighborhood.",
 }: TrustSignalsProps) {
   return (
     <section className="bg-white py-14 sm:py-20" aria-label="About us">
