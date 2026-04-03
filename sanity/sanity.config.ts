@@ -2,6 +2,7 @@
 
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
+import { presentationTool } from 'sanity/presentation'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 import { structure } from './structure'
@@ -19,6 +20,18 @@ export default defineConfig({
   },
   plugins: [
     structureTool({ structure }),
+    presentationTool({
+      name: 'presentation',
+      title: 'Visual Editor',
+      previewUrl: {
+        origin: typeof window !== 'undefined' ? window.location.origin.replace(':3000/studio', ':3000').replace('/studio', '') : 'http://localhost:3000',
+        preview: '/',
+        draftMode: {
+          enable: '/api/draft-mode/enable',
+          disable: '/api/draft-mode/disable',
+        },
+      },
+    }),
     visionTool({ defaultApiVersion: '2024-01-01' }),
   ],
 })

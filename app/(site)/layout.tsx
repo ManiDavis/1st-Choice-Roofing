@@ -1,3 +1,5 @@
+import { draftMode } from 'next/headers'
+import { VisualEditing } from 'next-sanity'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { OfferBanner } from '@/components/layout/OfferBanner'
@@ -6,6 +8,8 @@ import { SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import { BUSINESS } from '@/lib/utils'
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
+  const { isEnabled: isDraftMode } = draftMode()
+
   const settings = await sanityFetch<{
     businessName?: string
     phone?: string
@@ -62,6 +66,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         businessName={businessName}
         logoUrl={settings?.logo?.asset?.url}
       />
+
+      {/* Visual Editing overlay — only active when Sanity draft mode is on */}
+      {isDraftMode && <VisualEditing />}
     </>
   )
 }
