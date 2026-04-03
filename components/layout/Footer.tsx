@@ -49,7 +49,7 @@ export function Footer({
     { label: 'Dudley, MA', href: '/service-areas/dudley' },
   ]
 
-  const logoSrc = logoUrl || '/logo.svg'
+  const logoSrc = logoUrl || '/logo.jpg'
 
   return (
     <footer className="bg-brand-navy text-gray-300">
@@ -59,24 +59,14 @@ export function Footer({
 
           {/* Brand column */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-brand-gold/30">
-                <Image
-                  src={logoSrc}
-                  alt={businessName}
-                  fill
-                  className="object-cover"
-                  sizes="48px"
-                />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-lg font-display font-extrabold text-white leading-none tracking-tight">
-                  1st Choice
-                </span>
-                <span className="text-xs font-semibold text-brand-gold uppercase tracking-widest leading-none">
-                  Roofing
-                </span>
-              </div>
+            <Link href="/" className="inline-block">
+              <Image
+                src={logoSrc}
+                alt={businessName}
+                width={140}
+                height={56}
+                className="h-14 w-auto object-contain"
+              />
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               {footerText || `Licensed & Insured Roofing Contractor Serving Webster, Worcester & Surrounding Massachusetts Towns.`}

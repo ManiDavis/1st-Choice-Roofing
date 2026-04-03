@@ -14,7 +14,7 @@ export const homePage = defineType({
       title: 'Hero Section',
       type: 'object',
       fields: [
-        defineField({ name: 'headline', title: 'Main Headline', type: 'string', initialValue: 'Webster & Worcester's #1 Roofing Contractor' }),
+        defineField({ name: 'headline', title: 'Main Headline', type: 'string', initialValue: "Webster & Worcester's #1 Roofing Contractor" }),
         defineField({ name: 'subheadline', title: 'Sub-headline', type: 'text', rows: 2, initialValue: 'Licensed & Insured • Free Estimates • Residential & Commercial • Serving All of Worcester County, MA' }),
         defineField({
           name: 'primaryCta',
