@@ -1,0 +1,152 @@
+import type { Metadata } from 'next'
+import { sanityFetch } from '@/sanity/lib/client'
+import { HOME_PAGE_QUERY, ALL_SERVICES_QUERY, ALL_SERVICE_AREAS_QUERY } from '@/sanity/lib/queries'
+import { Hero } from '@/components/sections/Hero'
+import { TrustSignals } from '@/components/sections/TrustSignals'
+import { ServicesGrid } from '@/components/sections/ServicesGrid'
+import { WhyUs } from '@/components/sections/WhyUs'
+import { Testimonials } from '@/components/sections/Testimonials'
+import { ServiceAreas } from '@/components/sections/ServiceAreas'
+import { CTASection } from '@/components/sections/CTASection'
+import { Gallery } from '@/components/sections/extras/Gallery'
+import { Financing } from '@/components/sections/extras/Financing'
+import { Awards } from '@/components/sections/extras/Awards'
+import { BlogFeed } from '@/components/sections/extras/BlogFeed'
+import { PartnerLogos } from '@/components/sections/extras/PartnerLogos'
+import { localBusinessSchema } from '@/lib/structured-data'
+import { BUSINESS, SITE_URL } from '@/lib/utils'
+
+export const metadata: Metadata = {
+  title: 'Roofing Contractor Webster & Worcester MA | 1st Choice Roofing',
+  description: '1st Choice Roofing — Licensed & Insured Roofing Contractor in Webster, MA. Serving Worcester County with residential & commercial roofing, repairs, and replacements. Free estimates.',
+  alternates: { canonical: SITE_URL },
+}
+
+export default async function HomePage() {
+  const [homePage, services, areas] = await Promise.all([
+    sanityFetch<any>({ query: HOME_PAGE_QUERY, tags: ['homePage'] }).catch(() => null),
+    sanityFetch<any[]>({ query: ALL_SERVICES_QUERY, tags: ['servicePage'] }).catch(() => []),
+    sanityFetch<any[]>({ query: ALL_SERVICE_AREAS_QUERY, tags: ['serviceArea'] }).catch(() => []),
+  ])
+
+  const phone = BUSINESS.phone
+  const hero = homePage?.hero
+  const intro = homePage?.introStrip
+  const whyUs = homePage?.whyUsSection
+  const testimonialsSection = homePage?.testimonialsSection
+  const ctaBanner = homePage?.ctaBanner
+  const gallery = homePage?.gallery
+  const financing = homePage?.financing
+  const awards = homePage?.awards
+  const blogFeed = homePage?.blogFeed
+  const partnerLogos = homePage?.partnerLogos
+
+  const schema = localBusinessSchema({
+    name: BUSINESS.name,
+    phone: BUSINESS.phone,
+    address: BUSINESS.address,
+    hours: BUSINESS.hours,
+    rating: BUSINESS.rating,
+    siteUrl: SITE_URL,
+  })
+
+  return (
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
+      {/* Hero */}
+      <Hero
+        headline={hero?.headline}
+        subheadline={hero?.subheadline}
+        primaryCta={hero?.primaryCta}
+        secondaryCta={hero?.secondaryCta}
+        backgroundImageUrl={hero?.backgroundImage?.asset?.url}
+        badges={hero?.badges}
+        phone={phone}
+        rating={BUSINESS.rating}
+      />
+
+      {/* Trust / Stats */}
+      {(intro?.enabled !== false) && (
+        <TrustSignals
+          heading={intro?.heading}
+          body={intro?.body}
+          stats={intro?.stats}
+        />
+      )}
+
+      {/* Services */}
+      {services.length > 0 && (
+        <ServicesGrid
+          heading={homePage?.servicesSection?.heading}
+          subheading={homePage?.servicesSection?.subheading}
+          services={homePage?.servicesSection?.featuredServices?.length ? homePage.servicesSection.featuredServices : services}
+        />
+      )}
+
+      {/* Partner Logos (extra, defaults off) */}
+      {partnerLogos?.enabled && <PartnerLogos heading={partnerLogos.heading} logos={partnerLogos.logos} />}
+
+      {/* Why Us */}
+      {(whyUs?.enabled !== false) && (
+        <WhyUs
+          heading={whyUs?.heading}
+          subheading={whyUs?.subheading}
+          reasons={whyUs?.reasons}
+        />
+      )}
+
+      {/* Awards (extra, defaults off) */}
+      {awards?.enabled && <Awards heading={awards.heading} items={awards.items} />}
+
+      {/* Gallery (extra, defaults off) */}
+      {gallery?.enabled && <Gallery heading={gallery.heading} subheading={gallery.subheading} images={gallery.images} />}
+
+      {/* Testimonials */}
+      {(testimonialsSection?.enabled !== false) && testimonialsSection?.featuredTestimonials?.length > 0 && (
+        <Testimonials
+          heading={testimonialsSection.heading}
+          testimonials={testimonialsSection.featuredTestimonials}
+        />
+      )}
+
+      {/* Financing (extra, defaults off) */}
+      {financing?.enabled && (
+        <Financing
+          heading={financing.heading}
+          body={financing.body}
+          features={financing.features}
+          ctaLabel={financing.ctaLabel}
+          ctaHref={financing.ctaHref}
+        />
+      )}
+
+      {/* Service Areas */}
+      {(homePage?.areasSection?.enabled !== false) && (
+        <ServiceAreas
+          heading={homePage?.areasSection?.heading}
+          subheading={homePage?.areasSection?.subheading}
+          areas={areas}
+        />
+      )}
+
+      {/* Blog feed (extra, defaults off) */}
+      {blogFeed?.enabled && <BlogFeed posts={[]} heading="Roofing Tips & News" />}
+
+      {/* CTA Banner */}
+      {(ctaBanner?.enabled !== false) && (
+        <CTASection
+          heading={ctaBanner?.heading}
+          subheading={ctaBanner?.subheading}
+          primaryCta={ctaBanner?.primaryCta}
+          secondaryCta={ctaBanner?.secondaryCta}
+          phone={phone}
+        />
+      )}
+    </>
+  )
+}
