@@ -28,8 +28,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
     tags: ['siteSettings'],
   }).catch(() => null)
 
-  const phone = settings?.phone || BUSINESS.phone
-  const email = settings?.email || BUSINESS.email
+  // Use BUSINESS constants for phone/email — these must not be overridden by stale Sanity data
+  const phone = BUSINESS.phone
+  const email = BUSINESS.email
   const businessName = settings?.businessName || BUSINESS.name
 
   return (
@@ -57,7 +58,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <Footer
         phone={phone}
         email={email}
-        address={settings?.address || BUSINESS.address}
+        address={BUSINESS.address}
         social={settings?.social}
         footerText={settings?.footerText}
         businessName={businessName}

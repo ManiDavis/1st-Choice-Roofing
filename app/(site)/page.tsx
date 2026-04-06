@@ -31,7 +31,7 @@ export default async function HomePage() {
     sanityFetch<any>({ query: SITE_SETTINGS_QUERY, tags: ['siteSettings'] }).catch(() => null),
   ])
 
-  const phone = settings?.phone || BUSINESS.phone
+  const phone = BUSINESS.phone
   const reviewCount = settings?.reviewCount ?? BUSINESS.rating.count
   const reviewRating = settings?.reviewRating ?? BUSINESS.rating.value
 
@@ -63,10 +63,10 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
-      {/* Hero */}
+      {/* Hero — headline & subheadline hardcoded; Sanity controls image/badges/CTAs */}
       <Hero
-        headline={hero?.headline}
-        subheadline={hero?.subheadline}
+        headline="Massachusetts's #1 Roofing Contractor"
+        subheadline="Licensed & Insured • Free Estimates • Residential & Commercial • Serving All of Massachusetts"
         primaryCta={hero?.primaryCta}
         secondaryCta={hero?.secondaryCta}
         backgroundImageUrl={hero?.backgroundImage?.asset?.url}
@@ -136,14 +136,11 @@ export default async function HomePage() {
         />
       )}
 
-      {/* Service Areas */}
-      {(homePage?.areasSection?.enabled !== false) && (
-        <ServiceAreas
-          heading={homePage?.areasSection?.heading}
-          subheading={homePage?.areasSection?.subheading}
-          areas={areas}
-        />
-      )}
+      {/* Service Areas — heading hardcoded; counties shown via component fallback */}
+      <ServiceAreas
+        heading="Serving All of Massachusetts"
+        subheading="From Cape Cod to the Berkshires — we go where the roof takes us."
+      />
 
       {/* Blog feed (extra, defaults off) */}
       {blogFeed?.enabled && <BlogFeed posts={[]} heading="Roofing Tips & News" />}
