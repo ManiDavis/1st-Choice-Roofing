@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" fill="none">
+  <!-- Roof icon -->
+  <polygon points="20,30 32,14 44,30" fill="#D97706"/>
+  <rect x="24" y="30" width="16" height="12" fill="#D97706"/>
+  <!-- 1st -->
+  <text x="52" y="36" font-family="Montserrat, Arial, sans-serif" font-weight="900" font-size="26" fill="white">1</text>
+  <text x="66" y="34" font-family="Montserrat, Arial, sans-serif" font-weight="900" font-size="16" fill="#D97706">st</text>
+  <!-- Choice -->
+  <text x="82" y="36" font-family="Montserrat, Arial, sans-serif" font-weight="900" font-size="22" fill="white"> Choice</text>
+  <!-- ROOFING -->
+  <text x="52" y="48" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="11" fill="#FBBF24" letter-spacing="4">ROOFING</text>
+</svg>

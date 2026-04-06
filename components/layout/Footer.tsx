@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { formatPhone, BUSINESS } from '@/lib/utils'
 
 interface FooterProps {
@@ -36,6 +37,7 @@ export function Footer({
     { label: 'Roof Replacement', href: '/services/roof-replacement' },
     { label: 'Rubber & Flat Roofing', href: '/services/rubber-flat-roofing' },
     { label: 'Emergency Roofing', href: '/services/emergency-roofing' },
+    { label: 'Solar Roofing', href: '/services/solar-roofing' },
   ]
 
   const areaLinks = [
@@ -56,15 +58,10 @@ export function Footer({
           {/* Brand column */}
           <div className="space-y-4">
             <div>
-              <span className="text-2xl font-display font-extrabold text-white">
-                1<span className="text-brand-red">st</span> Choice
-              </span>
-              <span className="ml-1 text-sm font-semibold text-brand-gold uppercase tracking-widest">
-                Roofing
-              </span>
+              <Image src="/logo.svg" alt={businessName} width={160} height={48} className="h-10 w-auto object-contain" />
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
-              {footerText || `Licensed & Insured Roofing Contractor Serving Webster, Worcester & Surrounding Massachusetts Towns.`}
+              {footerText || `Licensed & Insured Roofing Contractor Serving All of Massachusetts. Based in Webster, MA.`}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap gap-2">

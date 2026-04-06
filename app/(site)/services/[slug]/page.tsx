@@ -11,21 +11,27 @@ import { FAQSection } from '@/components/sections/extras/FAQSection'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { breadcrumbSchema, serviceSchema } from '@/lib/structured-data'
 import { BUSINESS, SITE_URL } from '@/lib/utils'
+import { STATIC_SERVICE_DETAILS, STATIC_SERVICES } from '@/lib/static-services'
 
 interface Props {
   params: { slug: string }
 }
 
 export async function generateStaticParams() {
-  const slugs = await sanityFetch<{ slug: string }[]>({ query: SERVICE_SLUGS_QUERY, tags: ['servicePage'] }).catch(() => [])
-  return slugs.map((s) => ({ slug: s.slug }))
+  const sanitySlugRecords = await sanityFetch<{ slug: string }[]>({ query: SERVICE_SLUGS_QUERY, tags: ['servicePage'] }).catch(() => [])
+  const sanitySlugs = sanitySlugRecords.map((s) => s.slug)
+  // Merge with static slugs so Solar and other static services are always generated
+  const staticSlugs = STATIC_SERVICES.map((s) => s.slug)
+  const allSlugs = Array.from(new Set([...sanitySlugs, ...staticSlugs]))
+  return allSlugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = await sanityFetch<any>({ query: SERVICE_BY_SLUG_QUERY, params: { slug: params.slug }, tags: ['servicePage'] }).catch(() => null)
+  const sanityService = await sanityFetch<any>({ query: SERVICE_BY_SLUG_QUERY, params: { slug: params.slug }, tags: ['servicePage'] }).catch(() => null)
+  const service = sanityService ?? STATIC_SERVICE_DETAILS[params.slug] ?? null
   if (!service) return {}
 
-  const title = service.seo?.metaTitle || `${service.title} in Webster & Massachusetts`
+  const title = service.seo?.metaTitle || `${service.title} — Massachusetts | 1st Choice Roofing`
   const description = service.seo?.metaDescription || `${service.shortDescription} Licensed & insured. Free estimates. Serving all of Massachusetts.`
 
   return {
@@ -63,7 +69,10 @@ function ProcessSection({ process }: { process: { step: number; title: string; d
 }
 
 export default async function ServicePage({ params }: Props) {
-  const service = await sanityFetch<any>({ query: SERVICE_BY_SLUG_QUERY, params: { slug: params.slug }, tags: ['servicePage'] }).catch(() => null)
+  const sanityService = await sanityFetch<any>({ query: SERVICE_BY_SLUG_QUERY, params: { slug: params.slug }, tags: ['servicePage'] }).catch(() => null)
+  // Fall back to static data if Sanity has no document for this slug
+  const staticFallback = STATIC_SERVICE_DETAILS[params.slug]
+  const service = sanityService ?? staticFallback ?? null
   if (!service) notFound()
 
   const processAbove = service.processPosition === 'above'

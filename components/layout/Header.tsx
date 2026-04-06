@@ -40,6 +40,7 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
         { label: 'Roof Replacement', href: '/services/roof-replacement' },
         { label: 'Rubber & Flat Roofing', href: '/services/rubber-flat-roofing' },
         { label: 'Emergency Roofing', href: '/services/emergency-roofing' },
+        { label: 'Solar Roofing', href: '/services/solar-roofing' },
       ],
     },
     { label: 'About', href: '/about' },
@@ -65,14 +66,7 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
             {logoUrl ? (
               <Image src={logoUrl} alt={businessName} width={160} height={48} className="h-10 w-auto object-contain" />
             ) : (
-              <div className="flex items-center gap-2">
-                <span className="text-2xl font-display font-extrabold text-white leading-tight">
-                  1<span className="text-brand-red">st</span> Choice
-                </span>
-                <span className="text-sm font-semibold text-brand-gold uppercase tracking-widest leading-tight">
-                  Roofing
-                </span>
-              </div>
+              <Image src="/logo.svg" alt={businessName} width={160} height={48} className="h-10 w-auto object-contain" />
             )}
           </Link>
 

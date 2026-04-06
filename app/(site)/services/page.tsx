@@ -5,15 +5,17 @@ import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { CTASection } from '@/components/sections/CTASection'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { BUSINESS, SITE_URL } from '@/lib/utils'
+import { STATIC_SERVICES } from '@/lib/static-services'
 
 export const metadata: Metadata = {
-  title: 'Roofing Services in Webster & Worcester MA',
-  description: 'Residential & commercial roofing services in Webster, Worcester and Worcester County MA. Roof repair, replacement, gutters, inspections. Licensed & insured. Free estimates.',
+  title: 'Roofing Services Massachusetts | 1st Choice Roofing',
+  description: 'Residential & commercial roofing services across Massachusetts. Roof repair, replacement, rubber & flat roofing, emergency roofing, and solar referrals. Licensed & insured. Free estimates.',
   alternates: { canonical: `${SITE_URL}/services` },
 }
 
 export default async function ServicesPage() {
-  const services = await sanityFetch<any[]>({ query: ALL_SERVICES_QUERY, tags: ['servicePage'] }).catch(() => [])
+  const sanityServices = await sanityFetch<any[]>({ query: ALL_SERVICES_QUERY, tags: ['servicePage'] }).catch(() => [])
+  const services = sanityServices.length > 0 ? sanityServices : STATIC_SERVICES
 
   const schema = breadcrumbSchema([
     { name: 'Home', url: SITE_URL },

@@ -15,8 +15,8 @@ interface HeroProps {
 }
 
 export function Hero({
-  headline = "Webster & Worcester's #1 Roofing Contractor",
-  subheadline = 'Licensed & Insured • Free Estimates • Residential & Commercial • Serving All of Worcester County, MA',
+  headline = "Massachusetts's #1 Roofing Contractor",
+  subheadline = 'Licensed & Insured • Free Estimates • Residential & Commercial • Serving All of Massachusetts',
   primaryCta = { label: 'Get a Free Estimate', href: '/contact' },
   secondaryCta,
   backgroundImageUrl,

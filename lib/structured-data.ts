@@ -80,7 +80,7 @@ export function localBusinessSchema(business: BusinessInfo) {
         latitude: 42.0518,
         longitude: -71.8773,
       },
-      geoRadius: '40000',
+      geoRadius: '150000',
     },
     knowsAbout: [
       'Residential Roofing',
@@ -91,6 +91,7 @@ export function localBusinessSchema(business: BusinessInfo) {
       'Flat Roofing',
       'Asphalt Shingle Roofing',
       'Emergency Roofing',
+      'Solar Roofing',
     ],
     hasCredential: 'Licensed & Insured Roofing Contractor – Massachusetts',
     ...(business.rating && {

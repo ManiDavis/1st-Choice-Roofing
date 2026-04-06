@@ -15,10 +15,11 @@ import { BlogFeed } from '@/components/sections/extras/BlogFeed'
 import { PartnerLogos } from '@/components/sections/extras/PartnerLogos'
 import { localBusinessSchema } from '@/lib/structured-data'
 import { BUSINESS, SITE_URL } from '@/lib/utils'
+import { STATIC_SERVICES } from '@/lib/static-services'
 
 export const metadata: Metadata = {
-  title: 'Roofing Contractor Webster & Massachusetts | 1st Choice Roofing',
-  description: '1st Choice Roofing — Licensed & Insured Roofing Contractor based in Webster, MA. Serving all of Massachusetts with residential & commercial roofing, repairs, and replacements. Free estimates.',
+  title: 'Roofing Contractor Massachusetts | 1st Choice Roofing',
+  description: '1st Choice Roofing — Licensed & Insured Roofing Contractor serving all of Massachusetts. Residential & commercial roofing, repairs, replacements, rubber & flat roofing, and solar. Free estimates.',
   alternates: { canonical: SITE_URL },
 }
 
@@ -83,14 +84,18 @@ export default async function HomePage() {
         />
       )}
 
-      {/* Services */}
-      {services.length > 0 && (
-        <ServicesGrid
-          heading={homePage?.servicesSection?.heading}
-          subheading={homePage?.servicesSection?.subheading}
-          services={homePage?.servicesSection?.featuredServices?.length ? homePage.servicesSection.featuredServices : services}
-        />
-      )}
+      {/* Services — falls back to static data when Sanity has none */}
+      <ServicesGrid
+        heading={homePage?.servicesSection?.heading}
+        subheading={homePage?.servicesSection?.subheading}
+        services={
+          homePage?.servicesSection?.featuredServices?.length
+            ? homePage.servicesSection.featuredServices
+            : services.length > 0
+              ? services
+              : STATIC_SERVICES
+        }
+      />
 
       {/* Testimonials — just below "Our Roofing Services" */}
       {(testimonialsSection?.enabled !== false) && testimonialsSection?.featuredTestimonials?.length > 0 && (

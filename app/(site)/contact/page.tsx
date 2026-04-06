@@ -5,8 +5,8 @@ import { BUSINESS, SITE_URL, formatPhone } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 
 export const metadata: Metadata = {
-  title: 'Get a Free Roofing Estimate — Webster & Worcester MA',
-  description: 'Request a free, no-obligation roofing estimate in Webster, Worcester, or anywhere in Worcester County, MA. Call 1st Choice Roofing or fill out our quick form.',
+  title: 'Get a Free Roofing Estimate — Massachusetts | 1st Choice Roofing',
+  description: 'Request a free, no-obligation roofing estimate anywhere in Massachusetts. Call 1st Choice Roofing or fill out our quick form — same-day response.',
   alternates: { canonical: `${SITE_URL}/contact` },
 }
 
@@ -65,9 +65,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">Based In</p>
-                      <p className="text-lg font-bold text-brand-navy">{BUSINESS.address.street}</p>
-                      <p className="text-gray-600">{BUSINESS.address.city}, {BUSINESS.address.state} {BUSINESS.address.zip}</p>
-                      <p className="text-sm text-gray-500 mt-1">Serving all of Worcester County, MA</p>
+                      <p className="text-lg font-bold text-brand-navy">{BUSINESS.address.display}</p>
+                      <p className="text-sm text-gray-500 mt-1">Serving all of Massachusetts</p>
                     </div>
                   </li>
                 </ul>
@@ -97,7 +96,7 @@ export default function ContactPage() {
                   <StarRating rating={5} size="md" />
                   <span className="font-bold">5.0 Stars</span>
                 </div>
-                <p className="text-gray-300 text-sm">{BUSINESS.rating.count}+ verified Google reviews from customers in Webster, Worcester, and surrounding towns.</p>
+                <p className="text-gray-300 text-sm">{BUSINESS.rating.count}+ verified Google reviews from customers across Massachusetts.</p>
               </div>
             </div>
 

@@ -28,16 +28,16 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.1stchoi
 
 export const BUSINESS = {
   name: '1st Choice Roofing',
-  phone: '508-250-6565',
-  phoneHref: 'tel:5082506565',
+  phone: '508-250-0565',
+  phoneHref: 'tel:5082500565',
   email: 'support@1stchoice-roofing.com',
   address: {
-    street: 'Based in Webster',
+    street: 'Webster, MA',
     city: 'Webster',
     state: 'MA',
     zip: '01570',
     country: 'US',
-    display: 'Based in Webster, Massachusetts',
+    display: 'Webster, MA',
   },
   hours: {
     weekdays: '7:00 AM – 6:00 PM',

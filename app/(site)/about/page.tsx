@@ -8,8 +8,8 @@ import { breadcrumbSchema } from '@/lib/structured-data'
 import { BUSINESS, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: 'About 1st Choice Roofing — Webster, MA',
-  description: 'Learn about 1st Choice Roofing — a locally-owned, licensed & insured roofing contractor based in Webster, MA serving all of Massachusetts. Three expert crews, honest estimates.',
+  title: 'About 1st Choice Roofing — Massachusetts',
+  description: 'Learn about 1st Choice Roofing — a locally-owned, licensed & insured roofing contractor based in Webster, MA serving all of Massachusetts. Expert crews, honest estimates.',
   alternates: { canonical: `${SITE_URL}/about` },
 }
 
@@ -38,7 +38,7 @@ export default async function AboutPage() {
           <div className="max-w-3xl">
             <p className="text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">Our Story</p>
             <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-white mb-5">
-              Webster&apos;s Trusted Roofing Contractor
+              Massachusetts&apos;s Trusted Roofing Contractor
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed">
               1st Choice Roofing is a locally-owned, fully licensed and insured roofing contractor based in Webster, MA. We serve all of Massachusetts with dedicated residential and commercial roofing crews.
@@ -58,7 +58,7 @@ export default async function AboutPage() {
                   1st Choice Roofing was built on a simple belief: homeowners and businesses in Massachusetts deserve a roofing contractor they can actually trust. No upsells, no surprises — just honest work, done right.
                 </p>
                 <p>
-                  We&apos;re proud to be a local Webster, MA company. We know the area, we know the weather patterns that beat up Massachusetts roofs, and we know what it takes to build roofs that last.
+                  We&apos;re proud to be based in Webster, MA and serve customers across the entire state. We know Massachusetts weather patterns that beat up roofs year after year, and we know what it takes to build roofs that last.
                 </p>
                 <p>
                   With two dedicated residential crews and a separate commercial team, we can take on projects of any size without sacrificing quality or response time.
@@ -89,14 +89,14 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-display font-bold text-brand-navy mb-10 text-center">Our Credentials</h2>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { title: 'Licensed in Massachusetts', body: 'We hold all required state and local licences to operate as a roofing contractor in Massachusetts.', icon: '📋' },
+              { title: 'Licensed in Massachusetts', body: 'We hold all required state licences to operate as a roofing contractor across Massachusetts.', icon: '📋' },
               { title: 'Fully Insured', body: 'Full liability and workers compensation insurance on every job, protecting you and our team.', icon: '🛡️' },
-              { title: `${reviewCount}+ 5-Star Reviews`, body: `${reviewCount}+ verified Google reviews across Massachusetts. We let our work speak for itself.`, icon: '⭐' },
+              { title: `${reviewCount}+ 5-Star Reviews`, body: `${reviewCount}+ verified Google reviews from customers across Massachusetts. We let our work speak for itself.`, icon: '⭐' },
             ].map((c) => (
               <div key={c.title} className="bg-white rounded-2xl p-8 border border-gray-100 text-center shadow-sm hover:shadow-md hover:border-brand-red/20 transition-all">
                 <div className="text-4xl mb-4">{c.icon}</div>
                 <h3 className="font-bold text-brand-navy mb-2">{c.title}</h3>
-                <p className="text-sm text-gray-600">{c.body}</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{c.body}</p>
               </div>
             ))}
           </div>

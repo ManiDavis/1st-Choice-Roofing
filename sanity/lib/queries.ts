@@ -108,8 +108,9 @@ export const HOME_PAGE_QUERY = groq`
 `
 
 // ─── All Services ──────────────────────────────────────────────────────────
+// Excludes gutters and roof inspection services (no longer offered)
 export const ALL_SERVICES_QUERY = groq`
-  *[_type == "servicePage"] | order(order asc) {
+  *[_type == "servicePage" && !(slug.current in ["gutter-services", "gutters", "gutter-installation", "gutter-cleaning", "roof-inspection", "roof-inspections", "roof-inspection-service"])] | order(order asc) {
     ${serviceCardFragment}
   }
 `
