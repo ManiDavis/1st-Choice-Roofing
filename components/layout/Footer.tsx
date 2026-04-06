@@ -57,8 +57,15 @@ export function Footer({
 
           {/* Brand column */}
           <div className="space-y-4">
-            <div>
-              <Image src="/logo.svg" alt={businessName} width={96} height={96} className="h-24 w-auto object-contain" unoptimized />
+            <div className="h-24 w-24 rounded-full overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt={businessName}
+                width={96}
+                height={96}
+                className="h-full w-full object-cover"
+                unoptimized
+              />
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
               {footerText || `Licensed & Insured Roofing Contractor Serving All of Massachusetts. Based in Webster, MA.`}

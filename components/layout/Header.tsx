@@ -63,11 +63,16 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
         <div className="flex h-20 items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0" aria-label={`${businessName} home`}>
-            {logoUrl ? (
-              <Image src={logoUrl} alt={businessName} width={64} height={64} className="h-16 w-auto object-contain" unoptimized />
-            ) : (
-              <Image src="/logo.svg" alt={businessName} width={64} height={64} className="h-16 w-auto object-contain" unoptimized />
-            )}
+            <div className="h-16 w-16 rounded-full overflow-hidden flex-shrink-0">
+              <Image
+                src={logoUrl || '/logo.png'}
+                alt={businessName}
+                width={64}
+                height={64}
+                className="h-full w-full object-cover"
+                unoptimized
+              />
+            </div>
           </Link>
 
           {/* Desktop Nav */}
