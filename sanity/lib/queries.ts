@@ -49,6 +49,8 @@ export const SITE_SETTINGS_QUERY = groq`
     address,
     hours,
     licenseNumber,
+    reviewCount,
+    reviewRating,
     offerBanner,
     navLinks,
     social,
@@ -124,6 +126,8 @@ export const SERVICE_BY_SLUG_QUERY = groq`
     heroImage { asset->{ url }, alt },
     body,
     benefits,
+    extraContent,
+    processPosition,
     process,
     faqs[]-> {
       _id,

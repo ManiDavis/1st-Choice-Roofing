@@ -29,6 +29,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   }).catch(() => null)
 
   const phone = settings?.phone || BUSINESS.phone
+  const email = settings?.email || BUSINESS.email
   const businessName = settings?.businessName || BUSINESS.name
 
   return (
@@ -55,7 +56,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
       <Footer
         phone={phone}
-        email={settings?.email}
+        email={email}
         address={settings?.address || BUSINESS.address}
         social={settings?.social}
         footerText={settings?.footerText}

@@ -20,13 +20,13 @@ export const siteSettings = defineType({
       name: 'tagline',
       title: 'Tagline',
       type: 'string',
-      initialValue: 'Webster & Worcester's Most Trusted Roofing Contractor',
+      initialValue: "Webster & Massachusetts's Most Trusted Roofing Contractor",
     }),
     defineField({
       name: 'phone',
       title: 'Primary Phone Number',
       type: 'string',
-      initialValue: '508-450-2720',
+      initialValue: '508-250-6565',
     }),
     defineField({
       name: 'phoneAlt',
@@ -43,7 +43,7 @@ export const siteSettings = defineType({
       title: 'Address',
       type: 'object',
       fields: [
-        defineField({ name: 'street', title: 'Street', type: 'string', initialValue: '40 Westwind Dr' }),
+        defineField({ name: 'street', title: 'Street / Display Address', type: 'string', initialValue: 'Based in Webster, Massachusetts' }),
         defineField({ name: 'city', title: 'City', type: 'string', initialValue: 'Webster' }),
         defineField({ name: 'state', title: 'State', type: 'string', initialValue: 'MA' }),
         defineField({ name: 'zip', title: 'ZIP Code', type: 'string', initialValue: '01570' }),
@@ -64,6 +64,19 @@ export const siteSettings = defineType({
       name: 'licenseNumber',
       title: 'License Number',
       type: 'string',
+    }),
+    defineField({
+      name: 'reviewCount',
+      title: 'Review Count (displayed as "X+ 5-star reviews")',
+      type: 'number',
+      initialValue: 14,
+      description: 'The number shown in the reviews badge, e.g. 14 shows as "14+".',
+    }),
+    defineField({
+      name: 'reviewRating',
+      title: 'Average Review Rating (e.g. 5.0)',
+      type: 'number',
+      initialValue: 5.0,
     }),
 
     // ─── Offer Banner ────────────────────────────────────────────────

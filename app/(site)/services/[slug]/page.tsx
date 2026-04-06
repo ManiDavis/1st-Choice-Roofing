@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = await sanityFetch<any>({ query: SERVICE_BY_SLUG_QUERY, params: { slug: params.slug }, tags: ['servicePage'] }).catch(() => null)
   if (!service) return {}
 
-  const title = service.seo?.metaTitle || `${service.title} in Webster & Worcester MA`
-  const description = service.seo?.metaDescription || `${service.shortDescription} Licensed & insured. Free estimates. Serving Webster, Worcester, and all of Worcester County, MA.`
+  const title = service.seo?.metaTitle || `${service.title} in Webster & Massachusetts`
+  const description = service.seo?.metaDescription || `${service.shortDescription} Licensed & insured. Free estimates. Serving all of Massachusetts.`
 
   return {
     title,
@@ -40,9 +40,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+// Shared Process section component to avoid duplication
+function ProcessSection({ process }: { process: { step: number; title: string; description: string }[] }) {
+  return (
+    <div>
+      <h2 className="text-2xl font-display font-bold text-brand-navy mb-6">Our Process</h2>
+      <div className="space-y-4">
+        {process.map((step) => (
+          <div key={step.step} className="flex gap-4 items-start">
+            <div className="w-9 h-9 rounded-full bg-brand-red flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+              {step.step}
+            </div>
+            <div>
+              <p className="font-semibold text-brand-navy">{step.title}</p>
+              {step.description && <p className="text-sm text-gray-600 mt-0.5">{step.description}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default async function ServicePage({ params }: Props) {
   const service = await sanityFetch<any>({ query: SERVICE_BY_SLUG_QUERY, params: { slug: params.slug }, tags: ['servicePage'] }).catch(() => null)
   if (!service) notFound()
+
+  const processAbove = service.processPosition === 'above'
+  const hasProcess = service.process?.length > 0
+  const hasExtraContent = !!service.extraContent
 
   const schemas = [
     breadcrumbSchema([
@@ -143,24 +169,23 @@ export default async function ServicePage({ params }: Props) {
                 </div>
               )}
 
-              {/* Process */}
-              {service.process?.length > 0 && (
-                <div>
-                  <h2 className="text-2xl font-display font-bold text-brand-navy mb-6">Our Process</h2>
-                  <div className="space-y-4">
-                    {service.process.map((step: { step: number; title: string; description: string }) => (
-                      <div key={step.step} className="flex gap-4 items-start">
-                        <div className="w-9 h-9 rounded-full bg-brand-red flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-                          {step.step}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-brand-navy">{step.title}</p>
-                          {step.description && <p className="text-sm text-gray-600 mt-0.5">{step.description}</p>}
-                        </div>
-                      </div>
-                    ))}
+              {/* Process — ABOVE extra content if processPosition === 'above' */}
+              {hasProcess && processAbove && (
+                <ProcessSection process={service.process} />
+              )}
+
+              {/* Extra content (client-editable info block below Key Benefits) */}
+              {hasExtraContent && (
+                <div className="rounded-2xl bg-gray-50 border border-gray-100 p-8">
+                  <div className="prose prose-base max-w-none prose-headings:text-brand-navy prose-a:text-brand-red">
+                    <PortableText value={service.extraContent} />
                   </div>
                 </div>
+              )}
+
+              {/* Process — BELOW extra content (default) */}
+              {hasProcess && !processAbove && (
+                <ProcessSection process={service.process} />
               )}
             </div>
 

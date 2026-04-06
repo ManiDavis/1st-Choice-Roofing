@@ -10,12 +10,12 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          red: '#C0392B',
-          'red-dark': '#96281B',
-          'red-light': '#E74C3C',
-          navy: '#1a1a2e',
-          'navy-light': '#16213e',
-          gold: '#F59E0B',
+          red: '#D97706',
+          'red-dark': '#B45309',
+          'red-light': '#F59E0B',
+          navy: '#111827',
+          'navy-light': '#1F2937',
+          gold: '#FBBF24',
           'gold-dark': '#D97706',
         },
       },
@@ -24,7 +24,7 @@ const config: Config = {
         display: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-pattern': "linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.85))",
+        'hero-pattern': "linear-gradient(rgba(17,24,39,0.82), rgba(17,24,39,0.88))",
       },
     },
   },

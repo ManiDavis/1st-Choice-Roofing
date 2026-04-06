@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { BUSINESS } from '@/lib/utils'
 
 interface ServiceArea {
   _id: string
@@ -14,24 +13,32 @@ interface ServiceAreasProps {
   areas?: ServiceArea[]
 }
 
-// Fallback static areas for before Sanity content exists
-const fallbackAreas = BUSINESS.serviceAreas.map((name, i) => ({
-  _id: String(i),
-  name,
-  state: 'MA',
-  slug: name.toLowerCase().replace(/\s+/g, '-'),
-}))
+// MA counties as fallback static data
+const fallbackAreas: ServiceArea[] = [
+  { _id: '1', name: 'Worcester County', state: 'MA', slug: 'worcester-county' },
+  { _id: '2', name: 'Middlesex County', state: 'MA', slug: 'middlesex-county' },
+  { _id: '3', name: 'Norfolk County', state: 'MA', slug: 'norfolk-county' },
+  { _id: '4', name: 'Suffolk County', state: 'MA', slug: 'suffolk-county' },
+  { _id: '5', name: 'Essex County', state: 'MA', slug: 'essex-county' },
+  { _id: '6', name: 'Plymouth County', state: 'MA', slug: 'plymouth-county' },
+  { _id: '7', name: 'Bristol County', state: 'MA', slug: 'bristol-county' },
+  { _id: '8', name: 'Hampden County', state: 'MA', slug: 'hampden-county' },
+  { _id: '9', name: 'Hampshire County', state: 'MA', slug: 'hampshire-county' },
+  { _id: '10', name: 'Franklin County', state: 'MA', slug: 'franklin-county' },
+  { _id: '11', name: 'Berkshire County', state: 'MA', slug: 'berkshire-county' },
+  { _id: '12', name: 'Barnstable County', state: 'MA', slug: 'barnstable-county' },
+]
 
 export function ServiceAreas({
-  heading = 'Serving All of Worcester County, MA',
-  subheading = 'Fast local response — we know your neighbourhood.',
+  heading = 'Serving All of Massachusetts',
+  subheading = 'From Worcester County to Cape Cod — we go where the roof takes us.',
   areas,
 }: ServiceAreasProps) {
   const displayAreas = areas && areas.length > 0 ? areas : fallbackAreas
 
   return (
     <section className="bg-brand-navy py-16 sm:py-24 relative overflow-hidden" aria-label="Service areas">
-      {/* Background pattern */}
+      {/* Background dot pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 25px 25px, white 2px, transparent 0)`,
@@ -46,28 +53,28 @@ export function ServiceAreas({
           <p className="text-gray-400 max-w-xl mx-auto">{subheading}</p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {displayAreas.map((area) => (
             <Link
               key={area._id}
               href={`/service-areas/${area.slug}`}
-              className="group flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 px-4 py-3 text-sm font-medium text-gray-300 hover:text-white transition-all"
+              className="group flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-gold/40 px-4 py-3 text-sm font-medium text-gray-300 hover:text-white transition-all"
             >
               <svg className="w-3.5 h-3.5 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
-              {area.name}, {area.state}
+              {area.name}
             </Link>
           ))}
         </div>
 
         <div className="text-center mt-10">
-          <p className="text-gray-400 text-sm mb-4">Don't see your town? We likely cover it.</p>
+          <p className="text-gray-400 text-sm mb-4">Not sure if we cover your area? We likely do — just ask.</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-md bg-brand-red px-6 py-3 font-semibold text-white hover:bg-brand-red-dark transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg bg-brand-red px-6 py-3 font-bold text-white hover:bg-brand-red-dark transition-colors shadow-lg shadow-brand-red/20"
           >
-            Check Your Area & Get a Quote
+            Check Your Area &amp; Get a Free Quote
           </Link>
         </div>
       </div>

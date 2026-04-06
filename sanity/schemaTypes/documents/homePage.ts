@@ -14,8 +14,8 @@ export const homePage = defineType({
       title: 'Hero Section',
       type: 'object',
       fields: [
-        defineField({ name: 'headline', title: 'Main Headline', type: 'string', initialValue: 'Webster & Worcester's #1 Roofing Contractor' }),
-        defineField({ name: 'subheadline', title: 'Sub-headline', type: 'text', rows: 2, initialValue: 'Licensed & Insured • Free Estimates • Residential & Commercial • Serving All of Worcester County, MA' }),
+        defineField({ name: 'headline', title: 'Main Headline', type: 'string', initialValue: "Webster & Worcester's #1 Roofing Contractor" }),
+        defineField({ name: 'subheadline', title: 'Sub-headline', type: 'text', rows: 2, initialValue: "Licensed & Insured \u2022 Free Estimates \u2022 Residential & Commercial \u2022 Serving All of Massachusetts" }),
         defineField({
           name: 'primaryCta',
           title: 'Primary Button',
@@ -135,8 +135,8 @@ export const homePage = defineType({
       type: 'object',
       fields: [
         defineField({ name: 'enabled', type: 'boolean', title: 'Show', initialValue: true }),
-        defineField({ name: 'heading', type: 'string', title: 'Heading', initialValue: 'Serving All of Worcester County, MA' }),
-        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: 'Fast local response — we're in your neighborhood.' }),
+        defineField({ name: 'heading', type: 'string', title: 'Heading', initialValue: 'Serving All of Massachusetts' }),
+        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: "Fast local response — we're in your neighbourhood." }),
       ],
     }),
 
@@ -148,7 +148,7 @@ export const homePage = defineType({
       fields: [
         defineField({ name: 'enabled', type: 'boolean', title: 'Show', initialValue: true }),
         defineField({ name: 'heading', type: 'string', title: 'Heading', initialValue: 'Ready to Get Your Free Estimate?' }),
-        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: 'Call us or fill out the form. We'll get back to you the same day.' }),
+        defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: "Call us or fill out the form. We'll get back to you the same day." }),
         defineField({ name: 'primaryCta', type: 'ctaButton', title: 'Primary Button' }),
         defineField({ name: 'secondaryCta', type: 'ctaButton', title: 'Secondary Button' }),
       ],

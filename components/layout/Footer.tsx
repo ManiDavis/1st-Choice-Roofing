@@ -9,6 +9,7 @@ interface FooterProps {
     city: string
     state: string
     zip: string
+    display?: string
   }
   social?: {
     facebook?: string
@@ -33,17 +34,17 @@ export function Footer({
     { label: 'Commercial Roofing', href: '/services/commercial-roofing' },
     { label: 'Roof Repair', href: '/services/roof-repair' },
     { label: 'Roof Replacement', href: '/services/roof-replacement' },
-    { label: 'Gutter Services', href: '/services/gutter-services' },
-    { label: 'Roof Inspection', href: '/services/roof-inspection' },
+    { label: 'Rubber & Flat Roofing', href: '/services/rubber-flat-roofing' },
+    { label: 'Emergency Roofing', href: '/services/emergency-roofing' },
   ]
 
   const areaLinks = [
-    { label: 'Webster, MA', href: '/service-areas/webster' },
-    { label: 'Worcester, MA', href: '/service-areas/worcester' },
-    { label: 'Shrewsbury, MA', href: '/service-areas/shrewsbury' },
-    { label: 'Auburn, MA', href: '/service-areas/auburn' },
-    { label: 'Oxford, MA', href: '/service-areas/oxford' },
-    { label: 'Dudley, MA', href: '/service-areas/dudley' },
+    { label: 'Worcester County', href: '/service-areas/worcester-county' },
+    { label: 'Middlesex County', href: '/service-areas/middlesex-county' },
+    { label: 'Norfolk County', href: '/service-areas/norfolk-county' },
+    { label: 'Suffolk County', href: '/service-areas/suffolk-county' },
+    { label: 'Essex County', href: '/service-areas/essex-county' },
+    { label: 'Plymouth County', href: '/service-areas/plymouth-county' },
   ]
 
   return (
@@ -151,7 +152,7 @@ export function Footer({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span>{address.street}, {address.city}, {address.state} {address.zip}</span>
+                  <span>{address.display ?? `${address.street}, ${address.city}, ${address.state} ${address.zip}`}</span>
                 </div>
               </li>
               <li className="pt-2">

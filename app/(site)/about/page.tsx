@@ -1,21 +1,27 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/client'
-import { TEAM_MEMBERS_QUERY } from '@/sanity/lib/queries'
+import { TEAM_MEMBERS_QUERY, ALL_TESTIMONIALS_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import { CTASection } from '@/components/sections/CTASection'
+import { Testimonials } from '@/components/sections/Testimonials'
 import { breadcrumbSchema } from '@/lib/structured-data'
-import { BUSINESS, SITE_URL, formatPhone } from '@/lib/utils'
-import { StarRating } from '@/components/ui/StarRating'
+import { BUSINESS, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'About 1st Choice Roofing — Webster, MA',
-  description: 'Learn about 1st Choice Roofing — a locally-owned, licensed & insured roofing contractor in Webster, MA serving Worcester County. Two residential crews & one commercial crew.',
+  description: 'Learn about 1st Choice Roofing — a locally-owned, licensed & insured roofing contractor based in Webster, MA serving all of Massachusetts. Three expert crews, honest estimates.',
   alternates: { canonical: `${SITE_URL}/about` },
 }
 
 export default async function AboutPage() {
-  const team = await sanityFetch<any[]>({ query: TEAM_MEMBERS_QUERY, tags: ['teamMember'] }).catch(() => [])
+  const [team, testimonials, settings] = await Promise.all([
+    sanityFetch<any[]>({ query: TEAM_MEMBERS_QUERY, tags: ['teamMember'] }).catch(() => []),
+    sanityFetch<any[]>({ query: ALL_TESTIMONIALS_QUERY, tags: ['testimonial'] }).catch(() => []),
+    sanityFetch<any>({ query: SITE_SETTINGS_QUERY, tags: ['siteSettings'] }).catch(() => null),
+  ])
+
+  const reviewCount = settings?.reviewCount ?? BUSINESS.rating.count
+  const reviewRating = settings?.reviewRating ?? BUSINESS.rating.value
 
   const schema = breadcrumbSchema([
     { name: 'Home', url: SITE_URL },
@@ -32,10 +38,10 @@ export default async function AboutPage() {
           <div className="max-w-3xl">
             <p className="text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">Our Story</p>
             <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-white mb-5">
-              Webster's Trusted Roofing Contractor
+              Webster&apos;s Trusted Roofing Contractor
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed">
-              1st Choice Roofing is a locally-owned, fully licensed and insured roofing contractor based in Webster, MA. We serve Webster, Worcester, and the entire Worcester County area with dedicated residential and commercial roofing crews.
+              1st Choice Roofing is a locally-owned, fully licensed and insured roofing contractor based in Webster, MA. We serve all of Massachusetts with dedicated residential and commercial roofing crews.
             </p>
           </div>
         </div>
@@ -52,7 +58,7 @@ export default async function AboutPage() {
                   1st Choice Roofing was built on a simple belief: homeowners and businesses in Massachusetts deserve a roofing contractor they can actually trust. No upsells, no surprises — just honest work, done right.
                 </p>
                 <p>
-                  We're proud to be a local Webster, MA company. We know the area, we know the weather patterns that beat up Massachusetts roofs, and we know what it takes to build roofs that last.
+                  We&apos;re proud to be a local Webster, MA company. We know the area, we know the weather patterns that beat up Massachusetts roofs, and we know what it takes to build roofs that last.
                 </p>
                 <p>
                   With two dedicated residential crews and a separate commercial team, we can take on projects of any size without sacrificing quality or response time.
@@ -62,11 +68,11 @@ export default async function AboutPage() {
             <div className="grid grid-cols-2 gap-5">
               {[
                 { value: '500+', label: 'Roofs Completed', icon: '🏠' },
-                { value: '5.0★', label: 'Google Rating', icon: '⭐' },
+                { value: `${reviewRating.toFixed(1)}★`, label: 'Google Rating', icon: '⭐' },
                 { value: '3', label: 'Expert Crews', icon: '👷' },
                 { value: '100%', label: 'Licensed & Insured', icon: '✅' },
               ].map((stat) => (
-                <div key={stat.label} className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100">
+                <div key={stat.label} className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100 hover:border-brand-red/30 transition-colors">
                   <div className="text-3xl mb-2">{stat.icon}</div>
                   <p className="text-3xl font-display font-extrabold text-brand-red">{stat.value}</p>
                   <p className="text-sm text-gray-500 mt-1">{stat.label}</p>
@@ -85,9 +91,9 @@ export default async function AboutPage() {
             {[
               { title: 'Licensed in Massachusetts', body: 'We hold all required state and local licences to operate as a roofing contractor in Massachusetts.', icon: '📋' },
               { title: 'Fully Insured', body: 'Full liability and workers compensation insurance on every job, protecting you and our team.', icon: '🛡️' },
-              { title: '5-Star Reviews', body: `${BUSINESS.rating.count}+ verified Google reviews. We let our work speak for itself.`, icon: '⭐' },
+              { title: `${reviewCount}+ 5-Star Reviews`, body: `${reviewCount}+ verified Google reviews across Massachusetts. We let our work speak for itself.`, icon: '⭐' },
             ].map((c) => (
-              <div key={c.title} className="bg-white rounded-2xl p-8 border border-gray-100 text-center shadow-sm">
+              <div key={c.title} className="bg-white rounded-2xl p-8 border border-gray-100 text-center shadow-sm hover:shadow-md hover:border-brand-red/20 transition-all">
                 <div className="text-4xl mb-4">{c.icon}</div>
                 <h3 className="font-bold text-brand-navy mb-2">{c.title}</h3>
                 <p className="text-sm text-gray-600">{c.body}</p>
@@ -97,13 +103,23 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {/* Reviews */}
+      {testimonials.length > 0 && (
+        <Testimonials
+          heading="Don't Just Take Our Word For It"
+          testimonials={testimonials}
+          reviewCount={reviewCount}
+          reviewRating={reviewRating}
+        />
+      )}
+
       {/* Team */}
       {team.length > 0 && (
         <section className="bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-display font-bold text-brand-navy mb-10 text-center">Meet the Team</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {team.map((member) => (
+              {team.map((member: any) => (
                 <div key={member._id} className="text-center">
                   <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-4 bg-gray-100">
                     {member.photo?.asset?.url ? (

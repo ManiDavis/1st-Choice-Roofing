@@ -4,11 +4,12 @@ export interface BusinessInfo {
   name: string
   phone: string
   address: {
-    street: string
+    street?: string
     city: string
     state: string
     zip: string
     country: string
+    display?: string
   }
   hours: {
     weekdays: string
@@ -34,7 +35,6 @@ export function localBusinessSchema(business: BusinessInfo) {
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: business.address.street,
       addressLocality: business.address.city,
       addressRegion: business.address.state,
       postalCode: business.address.zip,
@@ -60,16 +60,18 @@ export function localBusinessSchema(business: BusinessInfo) {
       },
     ],
     areaServed: [
-      'Webster, MA',
-      'Worcester, MA',
-      'Shrewsbury, MA',
-      'Auburn, MA',
-      'Millbury, MA',
-      'Oxford, MA',
-      'Dudley, MA',
-      'Southbridge, MA',
-      'Grafton, MA',
-      'Northborough, MA',
+      'Worcester County, MA',
+      'Middlesex County, MA',
+      'Norfolk County, MA',
+      'Suffolk County, MA',
+      'Essex County, MA',
+      'Plymouth County, MA',
+      'Bristol County, MA',
+      'Hampden County, MA',
+      'Hampshire County, MA',
+      'Franklin County, MA',
+      'Berkshire County, MA',
+      'Massachusetts',
     ],
     serviceArea: {
       '@type': 'GeoCircle',
@@ -85,10 +87,10 @@ export function localBusinessSchema(business: BusinessInfo) {
       'Commercial Roofing',
       'Roof Repair',
       'Roof Replacement',
-      'Gutter Installation',
-      'Roof Inspection',
-      'Asphalt Shingle Roofing',
+      'Rubber Roofing',
       'Flat Roofing',
+      'Asphalt Shingle Roofing',
+      'Emergency Roofing',
     ],
     hasCredential: 'Licensed & Insured Roofing Contractor – Massachusetts',
     ...(business.rating && {

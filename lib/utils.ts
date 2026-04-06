@@ -30,15 +30,16 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.1stchoi
 
 export const BUSINESS = {
   name: '1st Choice Roofing',
-  phone: '508-450-2720',
-  phoneHref: 'tel:5084502720',
-  email: '',
+  phone: '508-250-6565',
+  phoneHref: 'tel:5082506565',
+  email: 'support@1stchoice-roofing.com',
   address: {
-    street: '40 Westwind Dr',
+    street: 'Based in Webster',
     city: 'Webster',
     state: 'MA',
     zip: '01570',
     country: 'US',
+    display: 'Based in Webster, Massachusetts',
   },
   hours: {
     weekdays: '7:00 AM – 6:00 PM',
@@ -50,8 +51,10 @@ export const BUSINESS = {
     count: 14,
   },
   serviceAreas: [
-    'Webster', 'Worcester', 'Shrewsbury', 'Auburn', 'Millbury',
-    'Oxford', 'Dudley', 'Southbridge', 'Grafton', 'Northborough',
-    'Holden', 'Leicester', 'Spencer', 'Charlton', 'Sturbridge',
+    'Worcester County', 'Middlesex County', 'Norfolk County',
+    'Suffolk County', 'Essex County', 'Plymouth County',
+    'Bristol County', 'Hampden County', 'Hampshire County',
+    'Franklin County', 'Berkshire County', 'Barnstable County',
+    'Dukes County', 'Nantucket County',
   ],
 } as const

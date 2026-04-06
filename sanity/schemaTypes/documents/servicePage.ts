@@ -49,6 +49,27 @@ export const servicePage = defineType({
     }),
 
     defineField({
+      name: 'extraContent',
+      title: 'Additional Information (shown below Key Benefits)',
+      type: 'portableTextContent',
+      description: 'Optional extra text block your client can use to add more detail about this service.',
+    }),
+
+    defineField({
+      name: 'processPosition',
+      title: 'Our Process — Position on page',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Below additional information (default)', value: 'below' },
+          { title: 'Above additional information', value: 'above' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'below',
+    }),
+
+    defineField({
       name: 'process',
       title: 'Our Process Steps',
       type: 'array',

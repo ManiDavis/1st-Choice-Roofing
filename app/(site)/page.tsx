@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { sanityFetch } from '@/sanity/lib/client'
-import { HOME_PAGE_QUERY, ALL_SERVICES_QUERY, ALL_SERVICE_AREAS_QUERY } from '@/sanity/lib/queries'
+import { HOME_PAGE_QUERY, ALL_SERVICES_QUERY, ALL_SERVICE_AREAS_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import { Hero } from '@/components/sections/Hero'
 import { TrustSignals } from '@/components/sections/TrustSignals'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
@@ -17,19 +17,23 @@ import { localBusinessSchema } from '@/lib/structured-data'
 import { BUSINESS, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: 'Roofing Contractor Webster & Worcester MA | 1st Choice Roofing',
-  description: '1st Choice Roofing — Licensed & Insured Roofing Contractor in Webster, MA. Serving Worcester County with residential & commercial roofing, repairs, and replacements. Free estimates.',
+  title: 'Roofing Contractor Webster & Massachusetts | 1st Choice Roofing',
+  description: '1st Choice Roofing — Licensed & Insured Roofing Contractor based in Webster, MA. Serving all of Massachusetts with residential & commercial roofing, repairs, and replacements. Free estimates.',
   alternates: { canonical: SITE_URL },
 }
 
 export default async function HomePage() {
-  const [homePage, services, areas] = await Promise.all([
+  const [homePage, services, areas, settings] = await Promise.all([
     sanityFetch<any>({ query: HOME_PAGE_QUERY, tags: ['homePage'] }).catch(() => null),
     sanityFetch<any[]>({ query: ALL_SERVICES_QUERY, tags: ['servicePage'] }).catch(() => []),
     sanityFetch<any[]>({ query: ALL_SERVICE_AREAS_QUERY, tags: ['serviceArea'] }).catch(() => []),
+    sanityFetch<any>({ query: SITE_SETTINGS_QUERY, tags: ['siteSettings'] }).catch(() => null),
   ])
 
-  const phone = BUSINESS.phone
+  const phone = settings?.phone || BUSINESS.phone
+  const reviewCount = settings?.reviewCount ?? BUSINESS.rating.count
+  const reviewRating = settings?.reviewRating ?? BUSINESS.rating.value
+
   const hero = homePage?.hero
   const intro = homePage?.introStrip
   const whyUs = homePage?.whyUsSection
@@ -43,10 +47,10 @@ export default async function HomePage() {
 
   const schema = localBusinessSchema({
     name: BUSINESS.name,
-    phone: BUSINESS.phone,
+    phone: phone,
     address: BUSINESS.address,
     hours: BUSINESS.hours,
-    rating: BUSINESS.rating,
+    rating: { value: reviewRating, count: reviewCount },
     siteUrl: SITE_URL,
   })
 
@@ -67,7 +71,7 @@ export default async function HomePage() {
         backgroundImageUrl={hero?.backgroundImage?.asset?.url}
         badges={hero?.badges}
         phone={phone}
-        rating={BUSINESS.rating}
+        rating={{ value: reviewRating, count: reviewCount }}
       />
 
       {/* Trust / Stats */}
@@ -88,6 +92,16 @@ export default async function HomePage() {
         />
       )}
 
+      {/* Testimonials — just below "Our Roofing Services" */}
+      {(testimonialsSection?.enabled !== false) && testimonialsSection?.featuredTestimonials?.length > 0 && (
+        <Testimonials
+          heading={testimonialsSection.heading}
+          testimonials={testimonialsSection.featuredTestimonials}
+          reviewCount={reviewCount}
+          reviewRating={reviewRating}
+        />
+      )}
+
       {/* Partner Logos (extra, defaults off) */}
       {partnerLogos?.enabled && <PartnerLogos heading={partnerLogos.heading} logos={partnerLogos.logos} />}
 
@@ -105,14 +119,6 @@ export default async function HomePage() {
 
       {/* Gallery (extra, defaults off) */}
       {gallery?.enabled && <Gallery heading={gallery.heading} subheading={gallery.subheading} images={gallery.images} />}
-
-      {/* Testimonials */}
-      {(testimonialsSection?.enabled !== false) && testimonialsSection?.featuredTestimonials?.length > 0 && (
-        <Testimonials
-          heading={testimonialsSection.heading}
-          testimonials={testimonialsSection.featuredTestimonials}
-        />
-      )}
 
       {/* Financing (extra, defaults off) */}
       {financing?.enabled && (
