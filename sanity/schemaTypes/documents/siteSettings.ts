@@ -6,8 +6,6 @@ export const siteSettings = defineType({
   title: 'Site Settings',
   type: 'document',
   icon: CogIcon,
-  // Only one document of this type should exist
-  __experimental_actions: ['update', 'publish'],
   fields: [
     // ─── Business Info ───────────────────────────────────────────────
     defineField({

@@ -2,7 +2,7 @@ import { StructureBuilder } from 'sanity/structure'
 import {
   HomeIcon,
   CogIcon,
-  ToolIcon,
+  WrenchIcon,
   PinIcon,
   DocumentIcon,
   StarIcon,
@@ -30,7 +30,7 @@ export const structure = (S: StructureBuilder) =>
       // ─── Services ───────────────────────────────────────────────
       S.listItem()
         .title('Services')
-        .icon(ToolIcon)
+        .icon(WrenchIcon)
         .child(
           S.documentTypeList('servicePage')
             .title('Services')
