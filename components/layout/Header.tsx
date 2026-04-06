@@ -60,13 +60,13 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between gap-4">
+        <div className="flex h-20 items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label={`${businessName} home`}>
+          <Link href="/" className="flex-shrink-0" aria-label={`${businessName} home`}>
             {logoUrl ? (
-              <Image src={logoUrl} alt={businessName} width={160} height={48} className="h-10 w-auto object-contain" />
+              <Image src={logoUrl} alt={businessName} width={64} height={64} className="h-16 w-auto object-contain" unoptimized />
             ) : (
-              <Image src="/logo.svg" alt={businessName} width={160} height={48} className="h-10 w-auto object-contain" />
+              <Image src="/logo.svg" alt={businessName} width={64} height={64} className="h-16 w-auto object-contain" unoptimized />
             )}
           </Link>
 
