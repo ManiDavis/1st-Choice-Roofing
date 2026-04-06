@@ -63,10 +63,9 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
-      {/* Hero — headline & subheadline hardcoded; Sanity controls image/badges/CTAs */}
       <Hero
-        headline="Massachusetts's #1 Roofing Contractor"
-        subheadline="Licensed & Insured • Free Estimates • Residential & Commercial • Serving All of Massachusetts"
+        headline={hero?.headline}
+        subheadline={hero?.subheadline}
         primaryCta={hero?.primaryCta}
         secondaryCta={hero?.secondaryCta}
         backgroundImageUrl={hero?.backgroundImage?.asset?.url}

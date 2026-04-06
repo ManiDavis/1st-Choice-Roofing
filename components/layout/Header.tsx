@@ -39,7 +39,6 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
         { label: 'Roof Repair', href: '/services/roof-repair' },
         { label: 'Roof Replacement', href: '/services/roof-replacement' },
         { label: 'Rubber & Flat Roofing', href: '/services/rubber-flat-roofing' },
-        { label: 'Emergency Roofing', href: '/services/emergency-roofing' },
         { label: 'Solar Roofing', href: '/services/solar-roofing' },
       ],
     },
@@ -65,7 +64,7 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
           <Link href="/" className="flex-shrink-0" aria-label={`${businessName} home`}>
             <div className="h-16 w-16 rounded-full overflow-hidden flex-shrink-0">
               <Image
-                src={logoUrl || '/logo.png'}
+                src={logoUrl || '/logo.svg'}
                 alt={businessName}
                 width={64}
                 height={64}

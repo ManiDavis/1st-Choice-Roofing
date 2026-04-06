@@ -36,7 +36,6 @@ export function Footer({
     { label: 'Roof Repair', href: '/services/roof-repair' },
     { label: 'Roof Replacement', href: '/services/roof-replacement' },
     { label: 'Rubber & Flat Roofing', href: '/services/rubber-flat-roofing' },
-    { label: 'Emergency Roofing', href: '/services/emergency-roofing' },
     { label: 'Solar Roofing', href: '/services/solar-roofing' },
   ]
 
@@ -59,7 +58,7 @@ export function Footer({
           <div className="space-y-4">
             <div className="h-24 w-24 rounded-full overflow-hidden">
               <Image
-                src="/logo.png"
+                src="/logo.svg"
                 alt={businessName}
                 width={96}
                 height={96}
