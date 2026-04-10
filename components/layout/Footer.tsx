@@ -20,6 +20,7 @@ interface FooterProps {
   }
   footerText?: string
   businessName?: string
+  logoUrl?: string
 }
 
 export function Footer({
@@ -29,6 +30,7 @@ export function Footer({
   social,
   footerText,
   businessName = BUSINESS.name,
+  logoUrl,
 }: FooterProps) {
   const serviceLinks = [
     { label: 'Residential Roofing', href: '/services/residential-roofing' },
@@ -58,7 +60,7 @@ export function Footer({
           <div className="space-y-4">
             <div className="h-24 w-24 rounded-full overflow-hidden">
               <Image
-                src="/logo.svg"
+                src={logoUrl || '/logo.svg'}
                 alt={businessName}
                 width={96}
                 height={96}
