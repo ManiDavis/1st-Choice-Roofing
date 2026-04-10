@@ -58,6 +58,7 @@ export const SITE_SETTINGS_QUERY = groq`
     defaultSeo { ${seoFragment} },
     logo { asset->{ url }, alt },
     logoLight { asset->{ url }, alt },
+    aboutHeroImage { asset->{ url }, alt },
     googleAnalyticsId,
     googleTagManagerId,
     googleVerification,

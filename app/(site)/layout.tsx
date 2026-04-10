@@ -23,6 +23,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       dismissible?: boolean
     }
     logo?: { asset: { url: string } }
+    aboutHeroImage?: { asset: { url: string }; alt?: string }
   }>({
     query: SITE_SETTINGS_QUERY,
     tags: ['siteSettings'],

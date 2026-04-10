@@ -191,6 +191,15 @@ export const siteSettings = defineType({
       type: 'seoFields',
     }),
 
+    // ─── Page Images ─────────────────────────────────────────────────
+    defineField({
+      name: 'aboutHeroImage',
+      title: 'About Page — Header Image',
+      type: 'image',
+      description: 'Background image for the About page header section.',
+      options: { hotspot: true },
+    }),
+
     // ─── Logo ────────────────────────────────────────────────────────
     defineField({
       name: 'logo',

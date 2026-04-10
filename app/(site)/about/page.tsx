@@ -33,14 +33,31 @@ export default async function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       {/* Header */}
-      <section className="bg-brand-navy py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#0d1117] relative overflow-hidden min-h-[380px] flex items-center">
+        {settings?.aboutHeroImage?.asset?.url && (
+          <>
+            <Image
+              src={settings.aboutHeroImage.asset.url}
+              alt={settings.aboutHeroImage.alt || 'About 1st Choice Roofing'}
+              fill
+              className="object-cover opacity-40"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-[#0d1117]/30" />
+          </>
+        )}
+        <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-gold opacity-80" />
+        <div className="relative w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-3xl">
-            <p className="text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">Our Story</p>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-0.5 w-8 bg-brand-gold rounded-full" />
+              <span className="text-brand-gold font-bold text-sm uppercase tracking-widest">Our Story</span>
+            </div>
             <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-white mb-5">
               Massachusetts&apos;s Trusted Roofing Contractor
             </h1>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-gray-300 leading-relaxed max-w-2xl">
               1st Choice Roofing is a locally-owned, fully licensed and insured roofing contractor based in Webster, MA. We serve all of Massachusetts with dedicated residential and commercial roofing crews.
             </p>
           </div>
