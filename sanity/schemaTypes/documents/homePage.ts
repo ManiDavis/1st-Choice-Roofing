@@ -136,6 +136,7 @@ export const homePage = defineType({
         defineField({ name: 'enabled', type: 'boolean', title: 'Show', initialValue: true }),
         defineField({ name: 'heading', type: 'string', title: 'Heading', initialValue: 'Serving All of Massachusetts' }),
         defineField({ name: 'subheading', type: 'string', title: 'Subheading', initialValue: "Fast local response — we're in your neighbourhood." }),
+        defineField({ name: 'backgroundImage', title: 'Background Image (aerial/landscape)', type: 'image', options: { hotspot: true } }),
       ],
     }),
 

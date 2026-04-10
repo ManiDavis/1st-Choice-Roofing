@@ -88,7 +88,12 @@ export const HOME_PAGE_QUERY = groq`
       heading,
       featuredTestimonials[]-> { ${testimonialFragment} },
     },
-    areasSection,
+    areasSection {
+      enabled,
+      heading,
+      subheading,
+      backgroundImage { asset->{ url }, alt },
+    },
     ctaBanner {
       enabled,
       heading,

@@ -101,18 +101,24 @@ export default async function ServicePage({ params }: Props) {
       ))}
 
       {/* Hero */}
-      <section className="bg-brand-navy relative overflow-hidden">
+      <section className="bg-[#0d1117] relative overflow-hidden min-h-[400px] flex items-center">
         {service.heroImage?.asset?.url && (
-          <Image
-            src={service.heroImage.asset.url}
-            alt={service.heroImage.alt || service.title}
-            fill
-            className="object-cover opacity-20"
-            priority
-            sizes="100vw"
-          />
+          <>
+            <Image
+              src={service.heroImage.asset.url}
+              alt={service.heroImage.alt || service.title}
+              fill
+              className="object-cover opacity-45"
+              priority
+              sizes="100vw"
+            />
+            {/* Directional gradient same as home hero */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-[#0d1117]/30" />
+          </>
         )}
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        {/* Gold left accent */}
+        <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-gold opacity-80" />
+        <div className="relative w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>

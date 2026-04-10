@@ -135,10 +135,11 @@ export default async function HomePage() {
         />
       )}
 
-      {/* Service Areas — heading hardcoded; counties shown via component fallback */}
+      {/* Service Areas */}
       <ServiceAreas
-        heading="Serving All of Massachusetts"
-        subheading="From Cape Cod to the Berkshires — we go where the roof takes us."
+        heading={homePage?.areasSection?.heading}
+        subheading={homePage?.areasSection?.subheading}
+        backgroundImageUrl={homePage?.areasSection?.backgroundImage?.asset?.url}
       />
 
       {/* Blog feed (extra, defaults off) */}

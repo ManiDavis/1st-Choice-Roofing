@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface ServiceArea {
   _id: string
@@ -11,6 +12,7 @@ interface ServiceAreasProps {
   heading?: string
   subheading?: string
   areas?: ServiceArea[]
+  backgroundImageUrl?: string
 }
 
 // MA counties as fallback static data
@@ -33,18 +35,35 @@ export function ServiceAreas({
   heading = 'Serving All of Massachusetts',
   subheading = 'From Worcester County to Cape Cod — we go where the roof takes us.',
   areas,
+  backgroundImageUrl,
 }: ServiceAreasProps) {
   const displayAreas = areas && areas.length > 0 ? areas : fallbackAreas
 
   return (
     <section className="bg-brand-navy py-16 sm:py-24 relative overflow-hidden" aria-label="Service areas">
-      {/* Background dot pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25px 25px, white 2px, transparent 0)`,
-          backgroundSize: '50px 50px',
-        }} />
-      </div>
+      {/* Background image (aerial shot) */}
+      {backgroundImageUrl && (
+        <>
+          <Image
+            src={backgroundImageUrl}
+            alt="Massachusetts service area"
+            fill
+            className="object-cover opacity-20"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/60 via-brand-navy/50 to-brand-navy/80" />
+        </>
+      )}
+
+      {/* Fallback dot pattern when no image */}
+      {!backgroundImageUrl && (
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 25px 25px, white 2px, transparent 0)`,
+            backgroundSize: '50px 50px',
+          }} />
+        </div>
+      )}
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
