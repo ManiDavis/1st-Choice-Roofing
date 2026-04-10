@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { sanityImageUrl } from '@/lib/utils'
 
 interface ServiceArea {
   _id: string
@@ -33,7 +34,7 @@ const fallbackAreas: ServiceArea[] = [
 
 export function ServiceAreas({
   heading = 'Serving All of Massachusetts',
-  subheading = 'From Worcester County to Cape Cod — we go where the roof takes us.',
+  subheading = 'From Worcester County to Cape Cod — and beyond. We go where the roof takes us.',
   areas,
   backgroundImageUrl,
 }: ServiceAreasProps) {
@@ -45,11 +46,12 @@ export function ServiceAreas({
       {backgroundImageUrl && (
         <>
           <Image
-            src={backgroundImageUrl}
+            src={sanityImageUrl(backgroundImageUrl, { width: 1920, quality: 80 })!}
             alt="Massachusetts service area"
             fill
             className="object-cover opacity-20"
             sizes="100vw"
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/60 via-brand-navy/50 to-brand-navy/80" />
         </>
@@ -87,7 +89,12 @@ export function ServiceAreas({
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        {/* New England note */}
+        <p className="text-center text-gray-400 text-sm mt-6 italic">
+          And all of New England — CT, RI, NH, VT, ME
+        </p>
+
+        <div className="text-center mt-8">
           <p className="text-gray-400 text-sm mb-4">Not sure if we cover your area? We likely do — just ask.</p>
           <Link
             href="/contact"

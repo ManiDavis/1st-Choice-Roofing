@@ -103,8 +103,7 @@ export function EstimateForm() {
           <option value="Roof Repair">Roof Repair</option>
           <option value="Roof Replacement">Roof Replacement</option>
           <option value="Rubber & Flat Roofing">Rubber &amp; Flat Roofing</option>
-          <option value="Emergency Repair">Emergency Repair</option>
-          <option value="Solar (Referral)">Solar (Referral)</option>
+          <option value="Solar Roofing">Solar Roofing</option>
           <option value="Other">Other</option>
         </select>
       </div>

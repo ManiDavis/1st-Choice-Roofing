@@ -1,3 +1,19 @@
+/**
+ * Transforms a Sanity CDN image URL to serve a resized, WebP-converted version.
+ * Sanity's image CDN handles this server-side, so the browser gets a small WebP
+ * instead of the raw upload (which can be 5-20 MB for high-res images).
+ *
+ * Use for hero/background images. Skip for logos/icons that need exact quality.
+ */
+export function sanityImageUrl(
+  url: string | undefined | null,
+  { width = 1920, quality = 82 }: { width?: number; quality?: number } = {}
+): string | undefined {
+  if (!url) return undefined
+  const sep = url.includes('?') ? '&' : '?'
+  return `${url}${sep}w=${width}&auto=format&fit=crop&q=${quality}`
+}
+
 export function cn(...inputs: (string | undefined | null | false)[]) {
   return inputs.filter(Boolean).join(' ')
 }

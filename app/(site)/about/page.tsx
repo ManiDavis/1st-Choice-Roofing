@@ -5,11 +5,11 @@ import { TEAM_MEMBERS_QUERY, ALL_TESTIMONIALS_QUERY, SITE_SETTINGS_QUERY } from 
 import { CTASection } from '@/components/sections/CTASection'
 import { Testimonials } from '@/components/sections/Testimonials'
 import { breadcrumbSchema } from '@/lib/structured-data'
-import { BUSINESS, SITE_URL } from '@/lib/utils'
+import { BUSINESS, SITE_URL, sanityImageUrl } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'About 1st Choice Roofing — Massachusetts',
-  description: 'Learn about 1st Choice Roofing — a locally-owned, licensed & insured roofing contractor based in Webster, MA serving all of Massachusetts. Expert crews, honest estimates.',
+  description: 'Learn about 1st Choice Roofing — a locally-owned, licensed & insured roofing contractor based in Webster, MA serving Massachusetts & New England. Expert services, honest estimates.',
   alternates: { canonical: `${SITE_URL}/about` },
 }
 
@@ -37,12 +37,13 @@ export default async function AboutPage() {
         {settings?.aboutHeroImage?.asset?.url && (
           <>
             <Image
-              src={settings.aboutHeroImage.asset.url}
+              src={sanityImageUrl(settings.aboutHeroImage.asset.url)!}
               alt={settings.aboutHeroImage.alt || 'About 1st Choice Roofing'}
               fill
               className="object-cover opacity-40"
               priority
               sizes="100vw"
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-[#0d1117]/30" />
           </>
@@ -57,7 +58,7 @@ export default async function AboutPage() {
               Massachusetts&apos;s Trusted Roofing Contractor
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed max-w-2xl">
-              1st Choice Roofing is a locally-owned, fully licensed and insured roofing contractor based in Webster, MA. We serve all of Massachusetts with dedicated residential and commercial roofing crews.
+              1st Choice Roofing is a locally-owned, fully licensed and insured roofing contractor based in Webster, MA. Serving Massachusetts & New England with dedicated residential and commercial roofing services.
             </p>
           </div>
         </div>
@@ -74,10 +75,10 @@ export default async function AboutPage() {
                   1st Choice Roofing was built on a simple belief: homeowners and businesses in Massachusetts deserve a roofing contractor they can actually trust. No upsells, no surprises — just honest work, done right.
                 </p>
                 <p>
-                  We&apos;re proud to be based in Webster, MA and serve customers across the entire state. We know Massachusetts weather patterns that beat up roofs year after year, and we know what it takes to build roofs that last.
+                  We&apos;re proud to be based in Webster, MA and serve customers across Massachusetts and all of New England. We know the weather patterns that beat up roofs year after year, and we know what it takes to build roofs that last.
                 </p>
                 <p>
-                  With two dedicated residential crews and a separate commercial team, we can take on projects of any size without sacrificing quality or response time.
+                  With dedicated residential and commercial services teams, we can take on projects of any size without sacrificing quality or response time.
                 </p>
               </div>
             </div>
@@ -85,7 +86,7 @@ export default async function AboutPage() {
               {[
                 { value: '500+', label: 'Roofs Completed', icon: '🏠' },
                 { value: `${reviewRating.toFixed(1)}★`, label: 'Google Rating', icon: '⭐' },
-                { value: '3', label: 'Expert Crews', icon: '👷' },
+                { value: '3', label: 'Expert Services', icon: '👷' },
                 { value: '100%', label: 'Licensed & Insured', icon: '✅' },
               ].map((stat) => (
                 <div key={stat.label} className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100 hover:border-brand-red/30 transition-colors">
@@ -105,7 +106,7 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-display font-bold text-brand-navy mb-10 text-center">Our Credentials</h2>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { title: 'Licensed in Massachusetts', body: 'We hold all required state licences to operate as a roofing contractor across Massachusetts.', icon: '📋' },
+              { title: 'Licensed in Massachusetts & New England', body: 'We hold all required state licences to operate as a roofing contractor across Massachusetts and New England.', icon: '📋' },
               { title: 'Fully Insured', body: 'Full liability and workers compensation insurance on every job, protecting you and our team.', icon: '🛡️' },
               { title: `${reviewCount}+ 5-Star Reviews`, body: `${reviewCount}+ verified Google reviews from customers across Massachusetts. We let our work speak for itself.`, icon: '⭐' },
             ].map((c) => (

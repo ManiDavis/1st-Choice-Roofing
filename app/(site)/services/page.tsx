@@ -34,7 +34,7 @@ export default async function ServicesPage() {
             Our Roofing Services
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            From single-shingle repairs to complete commercial re-roofs — we have the right crew for every job in Massachusetts.
+            From single-shingle repairs to complete commercial re-roofs — we have the right team for every job across Massachusetts & New England.
           </p>
         </div>
       </section>

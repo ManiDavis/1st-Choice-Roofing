@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { formatPhone } from '@/lib/utils'
+import { formatPhone, sanityImageUrl } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 
 interface HeroProps {
@@ -16,7 +16,7 @@ interface HeroProps {
 
 export function Hero({
   headline = "Massachusetts's #1 Roofing Contractor",
-  subheadline = 'Licensed & Insured • Free Estimates • Residential & Commercial • Serving All of Massachusetts',
+  subheadline = 'Licensed & Insured • Free Estimates • Residential & Commercial • Serving Massachusetts & New England',
   primaryCta = { label: 'Get a Free Estimate', href: '/contact' },
   secondaryCta,
   backgroundImageUrl,
@@ -31,12 +31,13 @@ export function Hero({
       <div className="absolute inset-0 bg-[#0d1117]">
         {backgroundImageUrl ? (
           <Image
-            src={backgroundImageUrl}
+            src={sanityImageUrl(backgroundImageUrl)!}
             alt="Professional roofing work by 1st Choice Roofing"
             fill
             className="object-cover opacity-55"
             priority
             sizes="100vw"
+            unoptimized
           />
         ) : (
           <div
@@ -67,7 +68,7 @@ export function Hero({
           {/* Gold eyebrow */}
           <div className="flex items-center gap-3 mb-4">
             <span className="h-0.5 w-8 bg-brand-gold rounded-full" />
-            <span className="text-brand-gold text-sm font-bold uppercase tracking-widest">Massachusetts Roofing Experts</span>
+            <span className="text-brand-gold text-sm font-bold uppercase tracking-widest">Massachusetts & New England Roofing Experts</span>
           </div>
 
           {/* Headline */}

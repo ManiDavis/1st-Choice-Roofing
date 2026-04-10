@@ -14,7 +14,7 @@ import { Awards } from '@/components/sections/extras/Awards'
 import { BlogFeed } from '@/components/sections/extras/BlogFeed'
 import { PartnerLogos } from '@/components/sections/extras/PartnerLogos'
 import { localBusinessSchema } from '@/lib/structured-data'
-import { BUSINESS, SITE_URL } from '@/lib/utils'
+import { BUSINESS, SITE_URL, sanityImageUrl } from '@/lib/utils'
 import { STATIC_SERVICES } from '@/lib/static-services'
 
 export const metadata: Metadata = {
@@ -68,7 +68,7 @@ export default async function HomePage() {
         subheadline={hero?.subheadline}
         primaryCta={hero?.primaryCta}
         secondaryCta={hero?.secondaryCta}
-        backgroundImageUrl={hero?.backgroundImage?.asset?.url}
+        backgroundImageUrl={sanityImageUrl(hero?.backgroundImage?.asset?.url)}
         badges={hero?.badges}
         phone={phone}
         rating={{ value: reviewRating, count: reviewCount }}

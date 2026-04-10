@@ -14,7 +14,7 @@ const defaultReasons: Reason[] = [
   {
     icon: '🏆',
     title: 'Licensed & Insured',
-    description: 'Fully licensed and insured in Massachusetts. Every job is covered, giving you total peace of mind.',
+    description: 'Fully licensed and insured in Massachusetts & New England. Every job is covered, giving you total peace of mind.',
   },
   {
     icon: '📞',
@@ -24,12 +24,12 @@ const defaultReasons: Reason[] = [
   {
     icon: '🏠',
     title: 'Residential Specialists',
-    description: 'Two dedicated residential crews mean we can handle multiple projects without sacrificing quality.',
+    description: 'Our dedicated residential services team can handle multiple projects without sacrificing quality.',
   },
   {
     icon: '🏢',
     title: 'Commercial Experts',
-    description: 'A dedicated commercial crew with experience on flat roofs, TPO, EPDM and large commercial installs.',
+    description: 'A dedicated commercial services team with experience on flat roofs, TPO, EPDM and large commercial installs.',
   },
   {
     icon: '💰',
@@ -45,7 +45,7 @@ const defaultReasons: Reason[] = [
 
 export function WhyUs({
   heading = 'Why Choose 1st Choice Roofing?',
-  subheading = 'Three crews. Local knowledge. A reputation built on honest work.',
+  subheading = 'Expert services. Local knowledge. A reputation built on honest work.',
   reasons = defaultReasons,
 }: WhyUsProps) {
   return (

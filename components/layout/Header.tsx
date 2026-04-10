@@ -54,8 +54,8 @@ export function Header({ phone, logoUrl, navLinks, businessName }: HeaderProps) 
       className={cn(
         'sticky top-0 z-40 w-full transition-all duration-300',
         scrolled
-          ? 'bg-brand-navy shadow-lg'
-          : 'bg-brand-navy/95 backdrop-blur-sm'
+          ? 'bg-[#313131] shadow-lg'
+          : 'bg-[#313131]/95 backdrop-blur-sm'
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

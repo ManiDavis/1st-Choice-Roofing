@@ -8,13 +8,13 @@ const defaultStats = [
   { value: '500+', label: 'Roofs Completed' },
   { value: '5.0★', label: 'Google Rating' },
   { value: '10+', label: 'Years Experience' },
-  { value: '3', label: 'Expert Crews' },
+  { value: '3', label: 'Expert Services' },
 ]
 
 export function TrustSignals({
   stats = defaultStats,
   heading = 'Proudly Serving Webster, MA & the Greater Worcester Area',
-  body = "We're a locally-owned, fully licensed and insured roofing contractor with crews dedicated to residential and commercial work. When you call 1st Choice Roofing, you get an experienced local team that knows Massachusetts weather, local building codes, and your neighborhood.",
+  body = "We're a locally-owned, fully licensed and insured roofing contractor with teams dedicated to residential and commercial work. When you call 1st Choice Roofing, you get an experienced local team that knows Massachusetts weather, local building codes, and your neighborhood.",
 }: TrustSignalsProps) {
   return (
     <section className="bg-white py-14 sm:py-20" aria-label="About us">
@@ -27,8 +27,8 @@ export function TrustSignals({
             {/* Checklist */}
             <ul className="space-y-2.5">
               {[
-                'Fully licensed & insured in Massachusetts',
-                'Residential & commercial crews available',
+                'Fully licensed & insured in Massachusetts & New England',
+                'Residential & commercial services available',
                 'Same-day response on inquiries',
                 'Free, no-obligation estimates',
                 'All work backed by our quality guarantee',

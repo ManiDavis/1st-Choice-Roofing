@@ -69,7 +69,7 @@ export function Footer({
               />
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
-              {footerText || `Licensed & Insured Roofing Contractor Serving All of Massachusetts. Based in Webster, MA.`}
+              {footerText || `Licensed & Insured Roofing Contractor Serving Massachusetts & All of New England. Based in Webster, MA.`}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap gap-2">

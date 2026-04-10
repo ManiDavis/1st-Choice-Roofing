@@ -10,7 +10,7 @@ import { CTASection } from '@/components/sections/CTASection'
 import { FAQSection } from '@/components/sections/extras/FAQSection'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { breadcrumbSchema, serviceSchema } from '@/lib/structured-data'
-import { BUSINESS, SITE_URL } from '@/lib/utils'
+import { BUSINESS, SITE_URL, sanityImageUrl } from '@/lib/utils'
 import { STATIC_SERVICE_DETAILS, STATIC_SERVICES } from '@/lib/static-services'
 
 interface Props {
@@ -105,12 +105,13 @@ export default async function ServicePage({ params }: Props) {
         {service.heroImage?.asset?.url && (
           <>
             <Image
-              src={service.heroImage.asset.url}
+              src={sanityImageUrl(service.heroImage.asset.url)!}
               alt={service.heroImage.alt || service.title}
               fill
               className="object-cover opacity-45"
               priority
               sizes="100vw"
+              unoptimized
             />
             {/* Directional gradient same as home hero */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-[#0d1117]/30" />

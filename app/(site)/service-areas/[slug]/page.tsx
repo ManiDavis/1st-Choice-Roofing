@@ -111,7 +111,7 @@ export default async function ServiceAreaPage({ params }: Props) {
                   {[
                     `Locally based in Webster, MA — fast response to ${area.name}`,
                     'Licensed & insured roofing contractor in Massachusetts',
-                    'Residential and commercial roofing crews available',
+                    'Residential and commercial roofing services available',
                     'Free, no-obligation estimates for all jobs',
                     'We know the Massachusetts climate and local building codes',
                   ].map((item) => (
