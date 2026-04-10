@@ -4,6 +4,8 @@ import { OfferBanner } from '@/components/layout/OfferBanner'
 import { sanityFetch } from '@/sanity/lib/client'
 import { SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import { BUSINESS } from '@/lib/utils'
+import { draftMode } from 'next/headers'
+import { VisualEditing } from 'next-sanity'
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const settings = await sanityFetch<{
@@ -65,6 +67,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         businessName={businessName}
         logoUrl={settings?.logo?.asset?.url}
       />
+
+      {/* Visual editing overlay — only active when Presentation tool is open */}
+      {draftMode().isEnabled && <VisualEditing />}
     </>
   )
 }
