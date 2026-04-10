@@ -26,7 +26,8 @@ export function Hero({
 }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden" aria-label="Hero">
-      {/* ── Background ────────────────────────────────────────────── */}
+
+      {/* Background layer */}
       <div className="absolute inset-0 bg-[#0d1117]">
         {backgroundImageUrl ? (
           <Image
@@ -38,7 +39,6 @@ export function Hero({
             sizes="100vw"
           />
         ) : (
-          /* Fallback geometric pattern */
           <div
             className="absolute inset-0 opacity-5"
             style={{
@@ -46,18 +46,11 @@ export function Hero({
             }}
           />
         )}
-
-        {/* Left-heavy gradient — keeps text readable while showing image on right */}
+        {/* Directional gradient — dark left for readability, fades right to show image */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-[#0d1117]/25" />
-
-        {/* Bottom vignette for angled section transition */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0d1117]/80 to-transparent" />
       </div>
 
-      {/* ── Gold accent bar ────────────────────────────────────────── */}
-      <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-gold opacity-80" />
-
-      {/* ── Content ───────────────────────────────────────────────── */}
+      {/* Content */}
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-24 w-full">
         <div className="max-w-2xl lg:max-w-3xl">
 
@@ -71,7 +64,7 @@ export function Hero({
             </div>
           )}
 
-          {/* Gold eyebrow line */}
+          {/* Gold eyebrow */}
           <div className="flex items-center gap-3 mb-4">
             <span className="h-0.5 w-8 bg-brand-gold rounded-full" />
             <span className="text-brand-gold text-sm font-bold uppercase tracking-widest">Massachusetts Roofing Experts</span>
@@ -100,7 +93,7 @@ export function Hero({
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <Link
               href={primaryCta.href}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-gold px-8 py-4 text-base font-bold text-brand-navy hover:bg-amber-400 transition-all shadow-xl shadow-amber-600/30 hover:shadow-amber-400/50 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-gold px-8 py-4 text-base font-bold text-brand-navy hover:bg-amber-400 transition-all shadow-xl shadow-amber-600/30 hover:scale-[1.02] active:scale-[0.98]"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -131,7 +124,7 @@ export function Hero({
           </div>
         </div>
 
-        {/* Stats strip — bottom right, visible on desktop */}
+        {/* Stats strip — desktop only, bottom right */}
         <div className="hidden lg:flex absolute right-0 bottom-24 flex-col items-end gap-6 pr-2">
           {[
             { value: '500+', label: 'Roofs Completed' },
@@ -146,7 +139,7 @@ export function Hero({
         </div>
       </div>
 
-      {/* ── Angled bottom edge ────────────────────────────────────── */}
+      {/* Angled bottom edge */}
       <div
         className="absolute bottom-0 left-0 right-0 h-16 bg-white"
         style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0)' }}

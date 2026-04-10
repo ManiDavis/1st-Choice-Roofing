@@ -116,8 +116,6 @@ export default async function ServicePage({ params }: Props) {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117] via-[#0d1117]/80 to-[#0d1117]/30" />
           </>
         )}
-        {/* Gold left accent */}
-        <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-gold opacity-80" />
         <div className="relative w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
