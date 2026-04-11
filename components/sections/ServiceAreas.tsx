@@ -76,16 +76,15 @@ export function ServiceAreas({
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {displayAreas.map((area) => (
-            <Link
+            <div
               key={area._id}
-              href={`/service-areas/${area.slug}`}
-              className="group flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-gold/40 px-4 py-3 text-sm font-medium text-gray-300 hover:text-white transition-all"
+              className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm font-medium text-gray-300"
             >
               <svg className="w-3.5 h-3.5 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
               </svg>
               {area.name}
-            </Link>
+            </div>
           ))}
         </div>
 
