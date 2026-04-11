@@ -27,9 +27,14 @@ export function sanityFetch<T>({
   params?: Record<string, unknown>
   tags?: string[]
 }) {
-  // In draft mode (Presentation tool): fetch draft content in real-time,
-  // no caching. On the live site: fetch published content, cache 60s.
-  const isDraft = draftMode().isEnabled
+  // draftMode() throws outside a request context (e.g. during generateStaticParams
+  // at build time). Fall back to production mode safely.
+  let isDraft = false
+  try {
+    isDraft = draftMode().isEnabled
+  } catch {
+    isDraft = false
+  }
 
   return baseClient.fetch<T>(query, params, {
     perspective: isDraft ? 'previewDrafts' : 'published',
