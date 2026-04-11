@@ -17,10 +17,18 @@ import { localBusinessSchema } from '@/lib/structured-data'
 import { BUSINESS, SITE_URL, sanityImageUrl } from '@/lib/utils'
 import { STATIC_SERVICES } from '@/lib/static-services'
 
-export const metadata: Metadata = {
-  title: 'Roofing Contractor Massachusetts | 1st Choice Roofing',
-  description: '1st Choice Roofing — Licensed & Insured Roofing Contractor serving all of Massachusetts. Residential & commercial roofing, repairs, replacements, rubber & flat roofing, and solar. Free estimates.',
-  alternates: { canonical: SITE_URL },
+export async function generateMetadata(): Promise<Metadata> {
+  const homePage = await sanityFetch<any>({ query: HOME_PAGE_QUERY, tags: ['homePage'] }).catch(() => null)
+
+  const title = homePage?.seo?.metaTitle || 'Roofing Contractor Massachusetts | 1st Choice Roofing'
+  const description = homePage?.seo?.metaDescription || '1st Choice Roofing — licensed & insured roofing contractor serving Massachusetts & New England. Residential & commercial roofing, repairs, replacements, rubber roofing & solar. Free estimates.'
+
+  return {
+    title,
+    description,
+    alternates: { canonical: homePage?.seo?.canonicalUrl || SITE_URL },
+    openGraph: { title, description },
+  }
 }
 
 export default async function HomePage() {
