@@ -3,7 +3,6 @@ import {
   HomeIcon,
   CogIcon,
   WrenchIcon,
-  PinIcon,
   DocumentIcon,
   StarIcon,
   UserIcon,
@@ -34,16 +33,6 @@ export const structure = (S: StructureBuilder) =>
         .child(
           S.documentTypeList('servicePage')
             .title('Services')
-            .defaultOrdering([{ field: 'order', direction: 'asc' }])
-        ),
-
-      // ─── Service Areas ──────────────────────────────────────────
-      S.listItem()
-        .title('Service Areas')
-        .icon(PinIcon)
-        .child(
-          S.documentTypeList('serviceArea')
-            .title('Service Areas')
             .defaultOrdering([{ field: 'order', direction: 'asc' }])
         ),
 
